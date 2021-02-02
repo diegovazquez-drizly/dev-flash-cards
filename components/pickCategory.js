@@ -2,7 +2,7 @@ import styles from '../styles/Category.module.css';
 import { useEffect, useState } from 'react';
 import Category from './category';
 
-export default function PickCategory() {
+export default function PickCategory({ chooseCategory }) {
   const [didFetch, setDidFetch] = useState(false);
   const [categoryData, setCategoryData] = useState([]);
 
@@ -11,17 +11,16 @@ export default function PickCategory() {
       fetch('/api/category')
         .then(res => res.json())
         .then(data => {
-          console.log(data)
           setDidFetch(true);
           setCategoryData(data);
         })
         .catch(err => console.log(err));
     }
-  })
+  });
 
   function handleClick(name) {
     return (event) => {
-      console.log('click', name);
+      chooseCategory(name);
     }
   }
 
