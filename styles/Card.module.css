@@ -1,3 +1,12 @@
+@keyframes slideInFromTop {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .root {
   display: flex;
   flex-direction: column;
@@ -9,7 +18,9 @@
   text-align: center;
   background-color: rgb(125, 223, 230);
   color: #2c2c2c;
+  animation: 3s ease-out 2s 1 slideInFromTop;
 }
+
 
 .flipCard {
   display: flex;
