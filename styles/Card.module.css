@@ -1,0 +1,94 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1200px;
+  height: 100%;
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+  text-align: center;
+  background-color: rgb(125, 223, 230);
+  color: #2c2c2c;
+}
+
+.flipCard {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  height: 100%;
+  border: 1px solid #eeeeee;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #17628a;
+  color: white;
+  perspective: 1000px;
+}
+
+.flipCardFront, .flipCardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.flipCardInner {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  min-height: 150px;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flipCardBack {
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.question {
+  font-size: 2rem;
+}
+
+.hint {
+  visibility: hidden;
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+.hintButton {
+  font-size: 1.1rem;
+  background-color: rgb(155, 155, 155);
+  color: white;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.hintButton:hover {
+  background-color: rgb(163, 163, 163);
+}
+
+.answerButton {
+  font-size: 1.2rem;
+  background-color: rgb(45, 131, 33);
+  color: white;
+  height: 45px;
+  width: 200px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.answerButton:hover {
+  background-color: rgb(0, 114, 28);
+}
