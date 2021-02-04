@@ -36,5 +36,8 @@
   color: white;
 }
 
-/* #48beff*/
-/*#3dfaff;*/
+@media (max-width: 1200px) {
+  .root {
+    width: calc(100vw - 100px);
+  }
+}
