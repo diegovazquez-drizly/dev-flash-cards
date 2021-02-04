@@ -4,26 +4,24 @@ import Card from './card';
 
 export default function CardContainer({ category }) {
 
-  const [didFetch, setDidFetch] = useState(false);
   const [cardData, setCardData] = useState([]);
   const [cardNumber, setCardNumber] = useState(0);
-      
+  const [currentCategory, setCurrentCategory] = useState('');
+
   useEffect(() => {
-    setDidFetch(false);
     setCardData([]);
-    if (!didFetch) {
+    if (currentCategory !== category) {
       fetch('/api/cards?category=' + category)
         .then(res => res.json())
         .then(data => {
           if (data.length) {
-            setDidFetch(true);
             setCardData(data);
+            setCurrentCategory(category);
           } 
         })
         .catch(err => console.log(err));
     }
   }, [category]);
-
 
   function nextQuestion() {
     setCardNumber(number => {
@@ -34,7 +32,7 @@ export default function CardContainer({ category }) {
   
   return (
     <div className={styles.root}>
-      { didFetch && cardData.length 
+      { cardData.length 
         ? 
           <>
             <h1>{category}</h1>
@@ -43,5 +41,5 @@ export default function CardContainer({ category }) {
         : <h1>Loading</h1>
       }
     </div>
-    )
+    );
 }
