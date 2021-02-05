@@ -44,11 +44,18 @@ export default function Card({ card, nextQuestion }) {
               <div className={styles.hint} ref={hintRef}>{card.card_hint}</div>
             </div>
           </div>
+          <div className={styles.flipCardBackHidden}> 
+            <div>
+              <p>{card.card_answer}</p>
+              <p>{card.card_code}</p>
+              <p><a className={styles.answerLink}>{card.card_source}</a></p>
+            </div>
+          </div>
           <div className={styles.flipCardBack}> 
             <div>
               <p>{card.card_answer}</p>
               <div>{card.card_code}</div>
-              <a href={card.card_source} target="blank">{card.card_source}</a>
+              <p><a className={styles.answerLink}>{card.card_source}</a></p>
             </div>
           </div>
         </div>

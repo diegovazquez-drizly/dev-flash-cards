@@ -18,7 +18,7 @@ export default function PickCategory({ chooseCategory }) {
     }
   });
 
-  function handleClick(name) {
+  function handleClick(name, ref) {
     return (event) => {
       chooseCategory(name);
     }
