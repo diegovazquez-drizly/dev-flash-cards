@@ -55,7 +55,14 @@ export default function Card({ card, nextQuestion }) {
             <div>
               <p>{card.card_answer}</p>
               <div>{card.card_code}</div>
-              <p><a className={styles.answerLink}>{card.card_source}</a></p>
+              <p>
+                <a 
+                  className={styles.answerLink}
+                  href={card.card_source}
+                >
+                  {card.card_source}
+                </a>
+              </p>
             </div>
           </div>
         </div>

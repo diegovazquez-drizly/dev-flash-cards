@@ -21,6 +21,10 @@
   animation: 3s ease-out 2s 1 slideInFromTop;
 }
 
+.cardTitle {
+  
+}
+
 .flipCard {
   display: flex;
   flex-direction: column;
@@ -77,6 +81,8 @@
 
 .answerLink {
   width: 100%;
+  overflow-wrap: break-word;
+
 }
 
 .hintButton {

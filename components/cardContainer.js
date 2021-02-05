@@ -36,7 +36,7 @@ export default function CardContainer({ category }) {
       { cardData.length 
         ? 
           <>
-            <h1>{category}</h1>
+            <h1 className={styles.categoryTitle}>{category}</h1>
             <Card card={cardData[cardNumber]} nextQuestion={nextQuestion}/>
           </>
         : null
