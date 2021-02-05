@@ -48,7 +48,7 @@ export default function Card({ card, nextQuestion }) {
             <div>
               <p>{card.card_answer}</p>
               <div>{card.card_code}</div>
-              <a>{card.card_source}</a>
+              <a href={card.card_source} target="blank">{card.card_source}</a>
             </div>
           </div>
         </div>

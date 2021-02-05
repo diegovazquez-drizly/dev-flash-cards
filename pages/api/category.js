@@ -1,18 +1,18 @@
 import db from './model';
 
-export default (req, res) => {
+export default async (req, res) => {
   const query = `
     SELECT * 
     FROM category   
   `;
-  db.query(query)
-    .then(response => {
-      res.statusCode = 200;
-      return res.json(response.rows);
-    })
-    .catch(err => {
-      console.log('ERR start session-->', err);
-      res.statusCode = 500;
-      return res.json({message: 'DB Error'});
-    })
+  let response;
+  try {
+    response = await db.query(query);
+  } catch (err) {
+    console.log(err);
+    res.statusCode = 500;
+    return res.json({message: 'DB Error'});
+  }
+  res.statusCode = 200;
+  return res.json(response.rows); 
 }

@@ -17,6 +17,7 @@ export default function CardContainer({ category }) {
           if (data.length) {
             setCardData(data);
             setCurrentCategory(category);
+            setCardNumber(0);
           } 
         })
         .catch(err => console.log(err));
@@ -38,7 +39,7 @@ export default function CardContainer({ category }) {
             <h1>{category}</h1>
             <Card card={cardData[cardNumber]} nextQuestion={nextQuestion}/>
           </>
-        : <h1>Loading</h1>
+        : null
       }
     </div>
     );

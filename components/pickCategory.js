@@ -42,7 +42,7 @@ export default function PickCategory({ chooseCategory }) {
               })} 
             </div>
           </>
-        : <h1>Loading</h1>}
+        : null}
     </div>
     )
 }
