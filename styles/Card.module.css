@@ -21,7 +21,6 @@
   animation: 3s ease-out 2s 1 slideInFromTop;
 }
 
-
 .flipCard {
   display: flex;
   flex-direction: column;
@@ -33,6 +32,10 @@
   background-color: #17628a;
   color: white;
   perspective: 1000px;
+}
+
+.flipCardBackHidden {
+  visibility: hidden;
 }
 
 .flipCardFront, .flipCardBack {
@@ -54,6 +57,7 @@
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
+  margin-bottom: 20px;
 }
 
 .flipCardBack {
@@ -62,13 +66,17 @@
 }
 
 .question {
-  font-size: 2rem;
+  font-size: 1.5em;
 }
 
 .hint {
   visibility: hidden;
   font-size: 1.1rem;
   margin-top: 5px;
+}
+
+.answerLink {
+  width: 100%;
 }
 
 .hintButton {
@@ -107,5 +115,11 @@
 @media (max-width: 1200px) {
   .root {
     width: calc(100vw - 100px);
+  }
+}
+
+@media (max-width: 780px) {
+  .root {
+    width: 100vw;
   }
 }
