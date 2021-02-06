@@ -1,6 +1,8 @@
 import styles from '../styles/Category.module.css';
 import { useEffect, useState } from 'react';
 import Category from './category';
+import {disableButton} from '../helperFunctions/cardTransition';
+
 
 export default function PickCategory({ chooseCategory }) {
   const [didFetch, setDidFetch] = useState(false);
@@ -20,6 +22,7 @@ export default function PickCategory({ chooseCategory }) {
 
   function handleClick(name, ref) {
     return (event) => {
+      //disableButton(ref);
       chooseCategory(name);
     }
   }

@@ -4,7 +4,6 @@ import PickCategory from '../components/pickCategory';
 import CardContainer from '../components/cardContainer';
 import { useState } from 'react';
 
-
 export default function Home() {
   const [category, setCategory] = useState('');
   
