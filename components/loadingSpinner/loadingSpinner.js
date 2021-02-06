@@ -6,7 +6,9 @@ const LoadingSpinner = ({height, fill, duration}) => {
   const styles = {
     height: height ? height : '100px',
     fill: fill ? fill : 'darkgray',
-    duration: duration ? duration : '1s'
+    duration: duration ? duration : '1s',
+    margin: 'auto',
+    padding: 'auto'  
   }
 
   return (

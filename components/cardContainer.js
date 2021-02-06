@@ -47,7 +47,7 @@ export default function CardContainer({ category }) {
   }
   
   return (
-    <div className={styles.root} ref={parentRef}>
+    <div className={styles.root} ref={parentRef} id="card">
       {cardData.length 
         ? 
           <div className={styles.cardsContainer} ref={childRef}>

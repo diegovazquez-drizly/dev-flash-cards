@@ -1,19 +1,15 @@
 export default function cardTransition(parentRef, childRef, setCardData, data) {
-  //if (!parentRef.current) return console.log('parent not mounted');
-  //if (!childRef.current) return console.log('child not mounted');
-  // console.log(parentRef.current, childRef.current);
-  parentRef.current.style.height = '400px';
-  //childRef.current.style.display = 'none';
+  parentRef.current.style.height = '100vh';
+  parentRef.current.style.minHeight = '100%';
   setTimeout(() => {
+    window.location.href = '#card';
     childRef.current.style.display = 'flex', 760;
     setCardData(data)
   }, 760);
-
 }
 
 export function disableButton(ref) {
   ref.current.style.pointerEvents = 'none';
-  //ref.current.style.display = 'none';
   return ref;
 }
 
