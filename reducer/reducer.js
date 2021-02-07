@@ -2,7 +2,8 @@ export const actionTypes = {
   setCardData: 'setCardData',
   setCardNumber: 'setCardNumber',
   setCurrentCategory: 'setCurrentCategory',
-  setShowLoading: 'setShowLoading'
+  setShowLoading: 'setShowLoading',
+  resetCardData: 'resetCardData'
 }
 
 export const initialState = {
@@ -32,11 +33,18 @@ export default function reducer(state, action) {
       return {
         ...state,
         cardNumber: newCardNumber
+      }
+    case actionTypes.resetCardData:
+      return {
+        ...state,
+        cardData: [],
+        cardNumber: 0
       } 
     case actionTypes.setCurrentCategory:
       return {
         ...state,
-        currentCategory: action.payload
+        currentCategory: action.payload,
+        showLoading: true
       }
     case actionTypes.setShowLoading:
       return {
