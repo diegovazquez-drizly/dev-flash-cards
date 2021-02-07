@@ -11,18 +11,16 @@ export default function CardContainer({ category }) {
   const childRef = useRef();
 
   useEffect(() => {
-    dispatch({type: 'setCardData', payload: []});
+    dispatch({type: actionTypes.resetCardData});
     if (state.currentCategory !== category) {
-      dispatch({type: actionTypes.setShowLoading, payload: true});
-      setTimeout(() => dispatch({type: actionTypes.setShowLoading, payload: false}), 750);
       dispatch({type: actionTypes.setCurrentCategory, payload: category});
+      setTimeout(() => dispatch({type: actionTypes.setShowLoading, payload: false}), 750);
       fetch('/api/cards?category=' + category)
       .then(res => res.json())
       .then(data => {
         if (data.length) {
           cardTransition(parentRef, childRef, dispatch, data);
           dispatch({type: actionTypes.setCardData, payload: data});
-          dispatch({type: actionTypes.setCardNumber, payload: 0});
         } 
       })
         .catch(err => console.log(err));
