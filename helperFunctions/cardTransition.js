@@ -3,7 +3,7 @@ export default function cardTransition(parentRef, childRef, dispatch, data) {
   parentRef.current.style.minHeight = '100%';
   setTimeout(() => {
     window.location.href = '#card';
-    childRef.current.style.display = 'flex', 760;
+    childRef.current.style.display = 'flex';
     dispatch({type: 'setCardData', payload: data})
   }, 760);
 }
