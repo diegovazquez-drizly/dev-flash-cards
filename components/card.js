@@ -1,5 +1,5 @@
-import styles from '../styles/Card.module.css';
-import {useState, useRef} from 'react';
+import styles from "../styles/Card.module.css";
+import { useState, useRef } from "react";
 
 export default function Card({ card, nextQuestion }) {
   const [showHint, setShowHint] = useState(false);
@@ -7,29 +7,29 @@ export default function Card({ card, nextQuestion }) {
   const hintRef = useRef();
   const innerRef = useRef();
 
-  const buttonText = !showHint ? 'Show Hint?' : 'Hide Hint?';
-  const answerText = !showAnswer ? 'Show Answer' : 'Next Question ➡️'; 
+  const buttonText = !showHint ? "Show Hint?" : "Hide Hint?";
+  const answerText = !showAnswer ? "Show Answer" : "Next Question ➡️";
 
   function handleHintClick(e) {
     if (showHint) {
-      hintRef.current.style.visibility = 'hidden';
+      hintRef.current.style.visibility = "hidden";
       setShowHint(false);
     } else {
-      hintRef.current.style.visibility = 'inherit';
+      hintRef.current.style.visibility = "inherit";
       setShowHint(true);
     }
   }
 
   function handleAnswerClick(e) {
-    if (answerText === 'Next Question ➡️') {
+    if (answerText === "Next Question ➡️") {
       nextQuestion();
       setShowHint(false);
       setShowAnswer(false);
-      innerRef.current.style.transform = 'none';
-      hintRef.current.style.visibility = 'hidden';
+      innerRef.current.style.transform = "none";
+      hintRef.current.style.visibility = "hidden";
     } else {
       setShowAnswer(true);
-      innerRef.current.style.transform = 'rotateY(180deg)';
+      innerRef.current.style.transform = "rotateY(180deg)";
     }
   }
 
@@ -40,26 +40,29 @@ export default function Card({ card, nextQuestion }) {
         <div className={styles.flipCardInner} ref={innerRef}>
           <div className={styles.flipCardFront}>
             <div className={styles.hintWrapper}>
-              <button className={styles.hintButton} onClick={handleHintClick}>{buttonText}</button>
-              <div className={styles.hint} ref={hintRef}>{card.card_hint}</div>
+              <button className={styles.hintButton} onClick={handleHintClick}>
+                {buttonText}
+              </button>
+              <div className={styles.hint} ref={hintRef}>
+                {card.card_hint}
+              </div>
             </div>
           </div>
-          <div className={styles.flipCardBackHidden}> 
+          <div className={styles.flipCardBackHidden}>
             <div>
               <p>{card.card_answer}</p>
               <p>{card.card_code}</p>
-              <p><a className={styles.answerLink}>{card.card_source}</a></p>
+              <p>
+                <a className={styles.answerLink}>{card.card_source}</a>
+              </p>
             </div>
           </div>
-          <div className={styles.flipCardBack}> 
+          <div className={styles.flipCardBack}>
             <div>
               <p>{card.card_answer}</p>
               <div>{card.card_code}</div>
               <p>
-                <a 
-                  className={styles.answerLink}
-                  href={card.card_source}
-                >
+                <a className={styles.answerLink} href={card.card_source}>
                   {card.card_source}
                 </a>
               </p>
@@ -67,13 +70,9 @@ export default function Card({ card, nextQuestion }) {
           </div>
         </div>
       </div>
-      <button 
-        className={styles.answerButton} 
-        onClick={handleAnswerClick}
-      >
+      <button className={styles.answerButton} onClick={handleAnswerClick}>
         {answerText}
       </button>
     </>
   );
 }
-

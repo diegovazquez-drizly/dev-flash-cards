@@ -1,7 +1,7 @@
-import db from './model';
+import db from "./model";
 
 export default async (req, res) => {
-  let response; 
+  let response;
   const { category } = req.query;
   const query = `
     SELECT * 
@@ -15,8 +15,14 @@ export default async (req, res) => {
   } catch (err) {
     console.log(err);
     res.statusCode = 500;
-    return res.json({message: 'DB Error'});
+    return res.json({ message: "DB Error" });
   }
   res.statusCode = 200;
-  return res.json(response.rows); 
-}
+  return res.json(response.rows);
+};
+/*
+
+  INSERT INTO card (card_question, card_answer, card_hint, card_source, card_code, category_id)
+  VALUES (value1, value2, value3, ...);
+
+*/

@@ -1,51 +1,39 @@
-import styles from '../styles/Category.module.css';
-import { useEffect, useState } from 'react';
-import Category from './category';
-import {disableButton} from '../helperFunctions/cardTransition';
+import styles from "../styles/Category.module.css";
+import Category from "./category";
+import { disableButton } from "../helperFunctions/cardTransition";
+import LoadingSpinner from "./loadingSpinner/loadingSpinner";
 
-
-export default function PickCategory({ chooseCategory }) {
-  const [didFetch, setDidFetch] = useState(false);
-  const [categoryData, setCategoryData] = useState([]);
-
-  useEffect(() => {
-    if (!didFetch) {
-      fetch('/api/category')
-        .then(res => res.json())
-        .then(data => {
-          setDidFetch(true);
-          setCategoryData(data);
-        })
-        .catch(err => console.log(err));
-    }
-  });
-
-  function handleClick(name, ref) {
-    return (event) => {
-      //disableButton(ref);
+export default function PickCategory({ chooseCategory, categoryData }) {
+  function handleClick(name) {
+    return () => {
       chooseCategory(name);
-    }
+    };
   }
-
   return (
     <div className={styles.root}>
-      {didFetch 
-        ? 
-          <>
-            <h1>Pick a Category</h1>
-            <div className={styles.categoriesContainer}>
-              {categoryData.map((category, i) => {
-                return (
-                  <Category
-                    key={i} 
-                    name={category.category_name}
-                    handleClick={handleClick}
-                  />
-                )
-              })} 
-            </div>
-          </>
-        : null}
+      {categoryData.length ? (
+        <>
+          <div className={styles.categoriesHeadingsContainer}>
+            <p className={styles.admin} onClick={() => chooseCategory("admin")}>
+              Admin
+            </p>
+            <h1 className={styles.heading}>Pick a Category</h1>
+          </div>
+          <div className={styles.categoriesContainer}>
+            {categoryData.map((category, i) => {
+              return (
+                <Category
+                  key={i}
+                  name={category.category_name}
+                  handleClick={handleClick}
+                />
+              );
+            })}
+          </div>
+        </>
+      ) : (
+        <LoadingSpinner />
+      )}
     </div>
-    )
+  );
 }
