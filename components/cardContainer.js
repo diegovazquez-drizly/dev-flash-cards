@@ -1,53 +1,58 @@
-import React, { useEffect, useRef, useReducer } from 'react';
-import styles from '../styles/Card.module.css';
-import Card from './card';
-import cardTransition from '../helperFunctions/cardTransition';
-import LoadingSpinner from './loadingSpinner/loadingSpinner';
-import reducer, { actionTypes, initialState } from '../reducer/reducer';
+import React, { useEffect, useState, useRef } from "react";
+import styles from "../styles/Card.module.css";
+import Card from "./card";
+import cardTransition from "../helperFunctions/cardTransition";
+import LoadingSpinner from "./loadingSpinner/loadingSpinner";
+
+//TODO: use reducer for state instead of so many useStates
 
 export default function CardContainer({ category }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [cardData, setCardData] = useState([]);
+  const [cardNumber, setCardNumber] = useState(0);
+  const [currentCategory, setCurrentCategory] = useState("");
+  const [showLoading, setShowLoading] = useState(false);
   const parentRef = useRef();
   const childRef = useRef();
 
   useEffect(() => {
-    dispatch({type: actionTypes.resetCardData});
-    if (state.currentCategory !== category) {
-      dispatch({type: actionTypes.setCurrentCategory, payload: category});
-      setTimeout(() => dispatch({type: actionTypes.setShowLoading, payload: false}), 750);
-      fetch('/api/cards?category=' + category)
-      .then(res => res.json())
-      .then(data => {
-        if (data.length) {
-          cardTransition(parentRef, childRef, dispatch, data);
-          dispatch({type: actionTypes.setCardData, payload: data});
-        } 
-      })
-        .catch(err => console.log(err));
+    setCardData([]);
+    if (currentCategory !== category) {
+      if (currentCategory) {
+        setShowLoading(true);
+        setTimeout(() => setShowLoading(false), 750);
       }
+      setCurrentCategory(category);
+      fetch("/api/cards?category=" + category)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.length) {
+            cardTransition(parentRef, childRef, setCardData, data);
+            setCardData(data);
+            setCardNumber(0);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   }, [category]);
 
+  function nextQuestion() {
+    setCardNumber((number) => {
+      if (number === cardData.length - 1) return 0;
+      else return number + 1;
+    });
+  }
+
   return (
-    <div className={styles.root} ref={parentRef} id="card">
-      {state.cardData.length 
-        ? 
-          <div className={styles.cardsContainer} ref={childRef}>
-            <h1 className={styles.categoryTitle}>{category}</h1>
-            <Card 
-              card={state.cardData[state.cardNumber]} 
-              nextQuestion={() => dispatch({type: actionTypes.setCardNumber})}
-            />
-          </div>
-        : null
-      }
-      {state.showLoading 
-        ? <LoadingSpinner 
-            height='200px'
-            fill='darkgray'
-            duration='1s'
-          />
-        : null
-      }
+    <div className={styles.root} ref={parentRef}>
+      {cardData.length ? (
+        <div className={styles.cardsContainer} ref={childRef}>
+          <h1 className={styles.categoryTitle}>{category}</h1>
+          <Card card={cardData[cardNumber]} nextQuestion={nextQuestion} />
+        </div>
+      ) : null}
+      {showLoading ? (
+        <LoadingSpinner height="200px" fill="darkgray" duration="1s" />
+      ) : null}
     </div>
-    );
+  );
 }
