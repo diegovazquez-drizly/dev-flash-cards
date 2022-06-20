@@ -29,9 +29,6 @@ export default function CardContainer({ category }) {
             cardTransition(parentRef, childRef, setCardData, data);
             setCardData(data);
             setCardNumber(0);
-          } else {
-            //console.log()
-            //parentRef.current.style.height = '0px';
           }
         })
         .catch((err) => console.log(err));

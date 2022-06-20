@@ -58,6 +58,10 @@
   margin-top: 0;
 }
 
+.SubmitAuth {
+  margin: 10px 10px 0 0;
+}
+
 @media (max-width: 1200px) {
   .root {
     width: calc(100vw - 100px);

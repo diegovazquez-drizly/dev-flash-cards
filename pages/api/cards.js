@@ -20,6 +20,7 @@ export default async (req, res) => {
   res.statusCode = 200;
   return res.json(response.rows);
 };
+
 /*
 
   INSERT INTO card (card_question, card_answer, card_hint, card_source, card_code, category_id)
