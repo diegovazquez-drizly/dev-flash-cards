@@ -3,7 +3,6 @@ import styles from "../styles/Category.module.css";
 import Category from "./category";
 import LoadingSpinner from "./loadingSpinner/loadingSpinner";
 import { Button, Dialog, TextInput, PasswordInput } from "@mantine/core";
-import { doc } from "prettier";
 
 export default function PickCategory({ chooseCategory, categoryData }) {
   const [showDialog, setShowDialog] = useState(false);
