@@ -17,6 +17,10 @@
   margin: 10px 10px 0 0;
 }
 
+.SuccessMessage {
+  color: green;
+}
+
 @media (max-width: 600px) {
   .AdminContainer {
     padding: 0 16px;

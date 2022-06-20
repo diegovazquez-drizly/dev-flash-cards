@@ -8,6 +8,11 @@
     "start": "next start",
     "pretty": "npx prettier --write ."
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx prettier --write ."
+    }
+  },
   "dependencies": {
     "@mantine/core": "^4.2.9",
     "@mantine/hooks": "^4.2.9",
@@ -21,6 +26,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "husky": "^8.0.1",
     "prettier": "2.7.1"
   }
 }

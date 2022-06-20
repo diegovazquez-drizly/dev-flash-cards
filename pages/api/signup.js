@@ -9,8 +9,8 @@
 //   const hash = bcrypt.hashSync(password, salt);
 
 //    const query = `
-//     INSERT INTO users (username, password) 
-//     VALUES ($1, $2)   
+//     INSERT INTO users (username, password)
+//     VALUES ($1, $2)
 //   `;
 
 //   try {

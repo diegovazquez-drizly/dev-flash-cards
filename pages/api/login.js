@@ -1,15 +1,15 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from "bcryptjs";
 import db from "./model";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 export default async (req, res) => {
   let response;
-  const {username, password} = JSON.parse(req.body);
+  const { username, password } = JSON.parse(req.body);
 
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(password, salt);
 
-   const query = `
+  const query = `
     SELECT password 
     FROM users
     WHERE username = $1   
@@ -17,7 +17,7 @@ export default async (req, res) => {
 
   try {
     response = await db.query(query, [username]);
-    const {rows} = response;
+    const { rows } = response;
     const passwordHash = rows[0].password;
     if (rows.length) {
       const result = await bcrypt.compare(password, passwordHash);
