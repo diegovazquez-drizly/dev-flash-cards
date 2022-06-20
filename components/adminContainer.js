@@ -15,12 +15,12 @@ export default function AdminContainer({ categoryData, setAdmin }) {
 
   const clearFields = () => {
     setCategory(null);
-    setQuestion('');
-    setAnswer('');
-    setHint('');
-    setSource('');
-    setCode('');
-  }
+    setQuestion("");
+    setAnswer("");
+    setHint("");
+    setSource("");
+    setCode("");
+  };
 
   const handleSubmit = async () => {
     const body = JSON.stringify({
@@ -29,19 +29,18 @@ export default function AdminContainer({ categoryData, setAdmin }) {
       answer,
       hint,
       source,
-      code
+      code,
     });
     try {
-      const res = await fetch('/api/question', {
-        method: 'POST',
-        body
+      const res = await fetch("/api/question", {
+        method: "POST",
+        body,
       });
       await res.json();
       setShowDialog(false);
       setShowAddQuestionSuccess(true);
       clearFields();
-
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   };
@@ -51,8 +50,10 @@ export default function AdminContainer({ categoryData, setAdmin }) {
       value: el.category_id,
       label: el.category_name,
     }));
-  
-  const heading = showAddQuestionSuccess ? 'Add another question?' : 'Add question?';
+
+  const heading = showAddQuestionSuccess
+    ? "Add another question?"
+    : "Add question?";
 
   return (
     <div className={styles.AdminContainer}>
@@ -107,7 +108,9 @@ export default function AdminContainer({ categoryData, setAdmin }) {
       <Button onClick={() => setAdmin(false)} className={styles.Cancel}>
         Cancel
       </Button>
-      {showAddQuestionSuccess && <p className={styles.SuccessMessage}>Success! ✅</p>}
+      {showAddQuestionSuccess && (
+        <p className={styles.SuccessMessage}>Success! ✅</p>
+      )}
       <Dialog
         opened={showDialog}
         withCloseButton
