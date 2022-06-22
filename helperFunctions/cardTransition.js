@@ -1,5 +1,5 @@
 export default function cardTransition(parentRef, childRef, setCardData, data) {
-  parentRef.current.style.height = "500px";
+  parentRef.current.style.height = "100%";
   setTimeout(() => {
     (childRef.current.style.display = "flex"), 760;
     setCardData(data);
@@ -14,4 +14,3 @@ export function disableButton(ref) {
 export function hideParent(ref) {
   ref.current.style.height = "0px";
 }
-

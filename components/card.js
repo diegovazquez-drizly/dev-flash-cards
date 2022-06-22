@@ -1,5 +1,6 @@
 import styles from "../styles/Card.module.css";
 import { useState, useRef } from "react";
+import { marked } from "marked";
 
 export default function Card({ card, nextQuestion }) {
   const [showHint, setShowHint] = useState(false);
@@ -9,6 +10,7 @@ export default function Card({ card, nextQuestion }) {
 
   const buttonText = !showHint ? "Show Hint?" : "Hide Hint?";
   const answerText = !showAnswer ? "Show Answer" : "Next Question ➡️";
+  const markedCode = marked("```\n" + card.card_code + "\n```");
 
   function handleHintClick(e) {
     if (showHint) {
@@ -59,8 +61,11 @@ export default function Card({ card, nextQuestion }) {
           </div>
           <div className={styles.flipCardBack}>
             <div>
-              <p>{card.card_answer}</p>
-              <div>{card.card_code}</div>
+              <p className={styles.answer}>{card.card_answer}</p>
+              <div
+                className={styles.code}
+                dangerouslySetInnerHTML={{ __html: markedCode }}
+              />
               <p>
                 <a className={styles.answerLink} href={card.card_source}>
                   {card.card_source}
