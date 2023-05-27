@@ -1,7 +1,9 @@
 export default function cardTransition(parentRef, childRef, setCardData, data) {
   parentRef.current.style.height = "100%";
   setTimeout(() => {
-    (childRef.current.style.display = "flex"), 760;
+    if (childRef?.current?.style?.display) {
+      childRef.current.style.display = "flex";
+    }
     setCardData(data);
   }, 760);
 }

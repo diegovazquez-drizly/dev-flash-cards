@@ -26,3 +26,14 @@
     padding: 0 16px;
   }
 }
+
+.AdminHomeOptionsContainer {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.AdminHomeOptions {
+  font-size: 20px;
+  margin: 10px 0;
+}

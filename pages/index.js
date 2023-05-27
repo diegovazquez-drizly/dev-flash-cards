@@ -42,7 +42,7 @@ export default function Home() {
             categoryData={categoryData}
           />
         )}
-        {category ? <CardContainer category={category} /> : null}
+        {!admin && category ? <CardContainer category={category} /> : null}
         {admin && (
           <AdminContainer setAdmin={setAdmin} categoryData={categoryData} />
         )}
