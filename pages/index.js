@@ -30,25 +30,24 @@ export default function Home() {
   });
 
   return (
-    <MantineProvider>
-      <div className={styles.container}>
-        <Head>
-          <title>Dev Flash Cards</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <main className={styles.main}>
-          {!admin && (
-            <PickCategory
-              chooseCategory={chooseCategory}
-              categoryData={categoryData}
-            />
-          )}
-          {category ? <CardContainer category={category} /> : null}
-          {admin && (
-            <AdminContainer setAdmin={setAdmin} categoryData={categoryData} />
-          )}
-        </main>
-      </div>
-    </MantineProvider>
+    <div className={styles.container}>
+      <Head>
+        <title>Dev Flash Cards</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main className={styles.main}>
+        {!admin && (
+          <PickCategory
+            chooseCategory={chooseCategory}
+            categoryData={categoryData}
+          />
+        )}
+        {!admin && category ? <CardContainer category={category} /> : null}
+        {admin && (
+          <AdminContainer setAdmin={setAdmin} categoryData={categoryData} />
+        )}
+      </main>
+    </div>
   );
 }
