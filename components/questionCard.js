@@ -1,14 +1,14 @@
-import React from 'react';
-import { Card, Collapse, Text, Badge, Button, Group } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import React from "react";
+import { Card, Collapse, Text, Badge, Button, Group } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 
-export default function QuestionCard({card}) {
+export default function QuestionCard({ card }) {
   const [opened, { toggle }] = useDisclosure(false);
 
   if (!card) return null;
 
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder >
+    <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>{card.card_question}</Text>
         <Badge color="pink" variant="light">
@@ -24,7 +24,14 @@ export default function QuestionCard({card}) {
         {card.card_source}
       </Text>
 
-      <Button onClick={toggle} variant="light" color="blue" fullWidth mt="md" radius="md">
+      <Button
+        onClick={toggle}
+        variant="light"
+        color="blue"
+        fullWidth
+        mt="md"
+        radius="md"
+      >
         Show Answer
       </Button>
 
@@ -33,5 +40,5 @@ export default function QuestionCard({card}) {
         <Text>{card.card_code}</Text>
       </Collapse>
     </Card>
-  )  
+  );
 }

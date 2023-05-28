@@ -40,15 +40,15 @@ export default function PickCategory({ chooseCategory, categoryData }) {
           document.cookie = `authToken=${data.authToken}; Secure; expires=Fri, 31 Dec 9999 23:59:59 GMT;`;
           return chooseCategory("admin");
         } else {
-          setUsername('');
-          setPassword('');
-          setUsernameError('Incorrect credentials');
-          setPasswordError('Incorrect credentials');
+          setUsername("");
+          setPassword("");
+          setUsernameError("Incorrect credentials");
+          setPasswordError("Incorrect credentials");
         }
       } catch (e) {
         // show error and clear cred
-        setUsername('');
-        setPassword('');
+        setUsername("");
+        setPassword("");
         console.log(e);
       }
     }
