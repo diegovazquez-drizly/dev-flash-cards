@@ -8,7 +8,7 @@ export default function QuestionCard({card}) {
   if (!card) return null;
 
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder>
+    <Card shadow="sm" padding="lg" radius="md" withBorder >
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>{card.card_question}</Text>
         <Badge color="pink" variant="light">
