@@ -39,3 +39,22 @@
   min-width: 300px;
   max-width: 375px;
 }
+
+.AllQuestionsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.CategoryButtons {
+  margin: 10px 0;
+}
+
+.AllQuestionsHeadingContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.HomeButton {
+  background-color: green;
+}

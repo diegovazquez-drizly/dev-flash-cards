@@ -25,7 +25,6 @@ export default function PickCategory({ chooseCategory, categoryData }) {
   };
 
   const loginUser = async () => {
-    console.log('checking creds')
     if (checkCredentials()) {
       const body = JSON.stringify({
         username,
@@ -37,7 +36,6 @@ export default function PickCategory({ chooseCategory, categoryData }) {
           body,
         });
         const data = await res.json();
-        console.log(data);
         if (data.authToken) {
           document.cookie = `authToken=${data.authToken}; Secure; expires=Fri, 31 Dec 9999 23:59:59 GMT;`;
           return chooseCategory("admin");

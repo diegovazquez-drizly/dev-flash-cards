@@ -26,7 +26,7 @@ export default function AdminContainer({ categoryData, setAdmin }) {
     case 'edit':
       break;
     case 'all':
-      currentPage = <AllQuestions />
+      currentPage = <AllQuestions setPage={setPage}/>
       break;
     case 'home':
       currentPage = <AdminHome setPage={setPage} setAdmin={setAdmin} />
