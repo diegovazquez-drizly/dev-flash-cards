@@ -57,7 +57,7 @@ export default function NewQuestion({ categoryData, setPage }) {
 
   return (
     <div>
-    <h2>Add question?</h2>
+      <h2>Add question?</h2>
       <Select
         label="Category"
         placeholder="Category"
@@ -105,7 +105,7 @@ export default function NewQuestion({ categoryData, setPage }) {
       >
         Submit
       </Button>
-      <Button onClick={() => setPage('home')} className={styles.Cancel}>
+      <Button onClick={() => setPage("home")} className={styles.Cancel}>
         Cancel
       </Button>
       {showAddQuestionSuccess && (

@@ -19,26 +19,24 @@ export default function AdminContainer({ categoryData, setAdmin }) {
     else setPage("new");
   };
 
-  switch(page) {
-    case 'new': 
-    currentPage = <NewQuestion categoryData={categoryData} setPage={setPage} />;
+  switch (page) {
+    case "new":
+      currentPage = (
+        <NewQuestion categoryData={categoryData} setPage={setPage} />
+      );
       break;
-    case 'edit':
+    case "edit":
       break;
-    case 'all':
-      currentPage = <AllQuestions setPage={setPage}/>
+    case "all":
+      currentPage = <AllQuestions setPage={setPage} />;
       break;
-    case 'home':
-      currentPage = <AdminHome setPage={setPage} setAdmin={setAdmin} />
+    case "home":
+      currentPage = <AdminHome setPage={setPage} setAdmin={setAdmin} />;
       break;
     default:
-      currentPage = <AdminHome setPage={setPage} setAdmin={setAdmin}/>;
+      currentPage = <AdminHome setPage={setPage} setAdmin={setAdmin} />;
       break;
   }
 
-  return (
-    <div className={styles.AdminContainer}>
-      {currentPage}
-    </div>
-  );
+  return <div className={styles.AdminContainer}>{currentPage}</div>;
 }

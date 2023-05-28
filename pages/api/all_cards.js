@@ -21,8 +21,8 @@ export default async (req, res) => {
   }
   res.statusCode = 200;
   return res.json({
-    cards: cardResponse.rows, 
-    categories: categoryResponse.rows
+    cards: cardResponse.rows,
+    categories: categoryResponse.rows,
   });
 };
 
