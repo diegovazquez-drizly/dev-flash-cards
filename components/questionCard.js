@@ -15,15 +15,12 @@ export default function QuestionCard({ card }) {
           {card.category_name}
         </Badge>
       </Group>
-
       <Text size="sm" color="dimmed">
         {card.card_hint}
       </Text>
-
       <Text size="xs" color="dimmed">
         {card.card_source}
       </Text>
-
       <Button
         onClick={toggle}
         variant="light"
@@ -34,7 +31,6 @@ export default function QuestionCard({ card }) {
       >
         Show Answer
       </Button>
-
       <Collapse in={opened}>
         <Text>{card.card_answer}</Text>
         <Text>{card.card_code}</Text>

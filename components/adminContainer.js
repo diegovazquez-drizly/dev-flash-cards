@@ -1,40 +1,30 @@
 import React, { useState } from "react";
 import styles from "../styles/Admin.module.css";
-import { Textarea } from "@mantine/core";
-import { Button, Select, Dialog } from "@mantine/core";
 import NewQuestion from "./newQuestion";
 import AllQuestions from "./allQuestions";
 import AdminHome from "./adminHome";
 
-export default function AdminContainer({ categoryData, setAdmin }) {
-  const [page, setPage] = useState("home");
+export default function AdminContainer({ categoryData, setPage }) {
+  const [page, setAdminPage] = useState("home");
 
-  const heading = page === "new" ? "Add question?" : "All questions";
-  const subheading = page === "new" ? "All questions" : "Add question?";
-
-  let currentPage = <AdminHome setPage={setPage} />;
-
-  const switchPage = () => {
-    if (page === "new") setPage("all");
-    else setPage("new");
-  };
+  let currentPage = <AdminHome setAdminPage={setAdminPage} />;
 
   switch (page) {
     case "new":
       currentPage = (
-        <NewQuestion categoryData={categoryData} setPage={setPage} />
+        <NewQuestion categoryData={categoryData} setAdminPage={setAdminPage} />
       );
       break;
     case "edit":
       break;
     case "all":
-      currentPage = <AllQuestions setPage={setPage} />;
+      currentPage = <AllQuestions setAdminPage={setAdminPage} />;
       break;
     case "home":
-      currentPage = <AdminHome setPage={setPage} setAdmin={setAdmin} />;
+      currentPage = <AdminHome setAdminPage={setAdminPage} setPage={setPage} />;
       break;
     default:
-      currentPage = <AdminHome setPage={setPage} setAdmin={setAdmin} />;
+      currentPage = <AdminHome setAdminPage={setAdminPage} setPage={setPage} />;
       break;
   }
 

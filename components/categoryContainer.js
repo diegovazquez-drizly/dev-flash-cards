@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import QuestionCard from "./questionCard";
 import { Button, Collapse } from "@mantine/core";
 import styles from "../styles/Admin.module.css";
@@ -8,7 +8,7 @@ export default function CategoryContainer(props) {
   const [opened, { toggle }] = useDisclosure(false);
 
   const categoryButtons = props?.cards?.map((card) => {
-    return <QuestionCard card={card} />;
+    return <QuestionCard card={card} key={card.card_id} />;
   });
 
   return (

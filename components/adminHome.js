@@ -1,33 +1,33 @@
 import React from "react";
-import { Button, Select, Dialog } from "@mantine/core";
+import { Button } from "@mantine/core";
 import styles from "../styles/Admin.module.css";
 
-export default function AdminHome({ setPage, setAdmin }) {
+export default function AdminHome({ setAdminPage, setPage }) {
   return (
     <div className={styles.AdminHomeOptionsContainer}>
       <h2>Admin Options</h2>
       <Button
         className={styles.AdminHomeButtons}
-        onClick={() => setPage("new")}
+        onClick={() => setAdminPage("new")}
       >
         Add question
       </Button>
       <Button
         className={styles.AdminHomeButtons}
-        onClick={() => setPage("edit")}
+        onClick={() => setAdminPage("edit")}
       >
         Edit question
       </Button>
       <Button
         className={styles.AdminHomeButtons}
-        onClick={() => setPage("all")}
+        onClick={() => setAdminPage("all")}
       >
         All questions
       </Button>
       <Button
         className={styles.AdminHomeButtons}
         onClick={() => {
-          setAdmin(false);
+          setPage("home");
         }}
       >
         Home
