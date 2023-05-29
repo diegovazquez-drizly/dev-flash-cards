@@ -1,0 +1,24 @@
+.HeaderContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: white;
+  border-bottom: 1px solid black;
+}
+
+.HomeButton {
+  background-color: transparent;
+}
+
+.AdminButton:hover,
+.HomeButton:hover {
+  background-color: #e9e9e9;
+  color: black;
+}
+
+.AdminButton {
+  background-color: black;
+  color: white;
+}
