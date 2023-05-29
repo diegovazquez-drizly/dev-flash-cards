@@ -1,32 +1,54 @@
 import Head from "next/head";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "../styles/Home.module.css";
 import PickCategory from "../components/pickCategory";
 import CardContainer from "../components/cardContainer";
 import AdminContainer from "../components/adminContainer";
+import Header from "../components/header";
+import { useGetCategories } from "../components/hooks";
+import LoadingSpinner from "../components/loadingSpinner/loadingSpinner";
 
 export default function Home() {
   const [category, setCategory] = useState("");
-  const [admin, setAdmin] = useState(false);
-  const [didFetch, setDidFetch] = useState(false);
-  const [categoryData, setCategoryData] = useState([]);
+  const [page, setPage] = useState("");
+  const categoryData = useGetCategories();
 
   function chooseCategory(value) {
-    if (value === "admin") return setAdmin(true);
+    if (value === "admin") return;
     setCategory(value);
+    setPage("flash-cards");
   }
 
-  useEffect(() => {
-    if (!didFetch) {
-      fetch("/api/category")
-        .then((res) => res.json())
-        .then((data) => {
-          setDidFetch(true);
-          setCategoryData(data);
-        })
-        .catch((err) => console.log(err));
-    }
-  });
+  let currentPage = (
+    <PickCategory chooseCategory={chooseCategory} categoryData={categoryData} />
+  );
+
+  switch (page) {
+    case "admin":
+      currentPage = (
+        <AdminContainer setPage={setPage} categoryData={categoryData} />
+      );
+      break;
+    case "home":
+      currentPage = (
+        <PickCategory
+          chooseCategory={chooseCategory}
+          categoryData={categoryData}
+        />
+      );
+      break;
+    case "flash-cards":
+      currentPage = category ? <CardContainer category={category} /> : null;
+      break;
+    default:
+      currentPage = (
+        <PickCategory
+          chooseCategory={chooseCategory}
+          categoryData={categoryData}
+        />
+      );
+      break;
+  }
 
   return (
     <div className={styles.container}>
@@ -36,16 +58,8 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        {!admin && (
-          <PickCategory
-            chooseCategory={chooseCategory}
-            categoryData={categoryData}
-          />
-        )}
-        {!admin && category ? <CardContainer category={category} /> : null}
-        {admin && (
-          <AdminContainer setAdmin={setAdmin} categoryData={categoryData} />
-        )}
+        <Header chooseCategory={chooseCategory} setPage={setPage} />
+        {currentPage}
       </main>
     </div>
   );

@@ -1,25 +1,13 @@
-import React, { useEffect, useState } from "react";
-import QuestionCard from "./questionCard";
+import React from "react";
 import { Button } from "@mantine/core";
 import styles from "../styles/Admin.module.css";
 import CategoryContainer from "./categoryContainer";
+import { useGetAllCards } from "./hooks";
 
-export default function AllQuestions({ setPage }) {
-  // api call to fetch all questions
-  // display all questions in a nice way
-  const [cards, setCards] = useState([]);
-  const [categories, setCategories] = useState([]);
-  useEffect(() => {
-    const fetchAllCards = async () => {
-      const res = await fetch("/api/all_cards");
-      const data = await res.json();
-      setCards(data.cards);
-      setCategories(data.categories);
-    };
-    fetchAllCards();
-  }, []);
-
+export default function AllQuestions({ setAdminPage }) {
+  const [cards, categories] = useGetAllCards();
   const cardsData = {};
+
   categories?.forEach((c) => {
     cardsData[c.category_name] = [];
   });
@@ -30,7 +18,13 @@ export default function AllQuestions({ setPage }) {
 
   const categoryButtons = Object.entries(cardsData).map(
     ([categoryName, cards]) => {
-      return <CategoryContainer cards={cards} categoryName={categoryName} />;
+      return (
+        <CategoryContainer
+          cards={cards}
+          categoryName={categoryName}
+          key={categoryName}
+        />
+      );
     }
   );
 
@@ -39,8 +33,11 @@ export default function AllQuestions({ setPage }) {
       <div className={styles.AllQuestionsContainer}>
         <div className={styles.AllQuestionsHeadingContainer}>
           <h2>All Questions</h2>
-          <Button onClick={() => setPage("home")} className={styles.HomeButton}>
-            Home
+          <Button
+            onClick={() => setAdminPage("home")}
+            className={styles.HomeButton}
+          >
+            Admin Home
           </Button>
         </div>
         {categoryButtons}

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import styles from "../styles/Category.module.css";
 
 export default function Category({ name, handleClick }) {
