@@ -8,7 +8,6 @@ import Header from "../components/header";
 import { useGetCategories } from "../components/hooks";
 import PickCategory from "../components/pickCategory";
 import styles from "../styles/Home.module.css";
-import { MantineProvider } from "@mantine/core";
 
 export default function Home() {
   const [category, setCategory] = useState("");
