@@ -1,12 +1,13 @@
+import { MantineProvider } from "@mantine/core";
+import '@mantine/core/styles.css';
 import Head from "next/head";
 import { useState } from "react";
-import styles from "../styles/Home.module.css";
-import PickCategory from "../components/pickCategory";
-import CardContainer from "../components/cardContainer";
 import AdminContainer from "../components/adminContainer";
+import CardContainer from "../components/cardContainer";
 import Header from "../components/header";
 import { useGetCategories } from "../components/hooks";
-import LoadingSpinner from "../components/loadingSpinner/loadingSpinner";
+import PickCategory from "../components/pickCategory";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [category, setCategory] = useState("");
@@ -51,6 +52,7 @@ export default function Home() {
   }
 
   return (
+    <MantineProvider>
     <div className={styles.container}>
       <Head>
         <title>Dev Flash Cards</title>
@@ -62,5 +64,6 @@ export default function Home() {
         {currentPage}
       </main>
     </div>
+    </MantineProvider>
   );
 }
