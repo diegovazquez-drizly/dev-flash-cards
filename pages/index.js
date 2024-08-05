@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 import PickCategory from "../components/pickCategory";
 import CardContainer from "../components/cardContainer";
 import AdminContainer from "../components/adminContainer";
+import { MantineProvider } from "@mantine/core";
 
 export default function Home() {
   const [category, setCategory] = useState("");
@@ -29,24 +30,25 @@ export default function Home() {
   });
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Dev Flash Cards</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        {!admin && (
-          <PickCategory
-            chooseCategory={chooseCategory}
-            categoryData={categoryData}
-          />
-        )}
-        {category ? <CardContainer category={category} /> : null}
-        {admin && (
-          <AdminContainer setAdmin={setAdmin} categoryData={categoryData} />
-        )}
-      </main>
-    </div>
+    <MantineProvider>
+      <div className={styles.container}>
+        <Head>
+          <title>Dev Flash Cards</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main className={styles.main}>
+          {!admin && (
+            <PickCategory
+              chooseCategory={chooseCategory}
+              categoryData={categoryData}
+            />
+          )}
+          {category ? <CardContainer category={category} /> : null}
+          {admin && (
+            <AdminContainer setAdmin={setAdmin} categoryData={categoryData} />
+          )}
+        </main>
+      </div>
+    </MantineProvider>
   );
 }
