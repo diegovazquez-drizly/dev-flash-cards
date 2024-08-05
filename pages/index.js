@@ -8,6 +8,7 @@ import Header from "../components/header";
 import { useGetCategories } from "../components/hooks";
 import PickCategory from "../components/pickCategory";
 import styles from "../styles/Home.module.css";
+import { MantineProvider } from "@mantine/core";
 
 export default function Home() {
   const [category, setCategory] = useState("");
@@ -53,17 +54,17 @@ export default function Home() {
 
   return (
     <MantineProvider>
-    <div className={styles.container}>
-      <Head>
-        <title>Dev Flash Cards</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <div className={styles.container}>
+        <Head>
+          <title>Dev Flash Cards</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <main className={styles.main}>
-        <Header chooseCategory={chooseCategory} setPage={setPage} />
-        {currentPage}
-      </main>
-    </div>
+        <main className={styles.main}>
+          <Header chooseCategory={chooseCategory} setPage={setPage} />
+          {currentPage}
+        </main>
+      </div>
     </MantineProvider>
   );
 }
