@@ -62,10 +62,17 @@ export default function Header({ chooseCategory, setPage }) {
     }
   };
 
+  const handleTrivia = () => {
+    setPage("trivia");
+  };
+
   return (
     <div className={styles.HeaderContainer}>
       <Button className={styles.HomeButton} onClick={() => setPage("home")}>
         <HomeIcon />
+      </Button>
+      <Button className={styles.AdminButton} onClick={handleTrivia}>
+        Trivia
       </Button>
       <Button className={styles.AdminButton} onClick={handleAdmin}>
         Admin

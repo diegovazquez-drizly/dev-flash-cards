@@ -51,11 +51,15 @@ const Spinner = ({ style }) => (
   </svg>
 );
 
-const LoadingSpinner = ({ height, fill, duration }) => {
+const LoadingSpinner = ({
+  height = "100px",
+  fill = "darkgray",
+  duration = "1s",
+}) => {
   const styles = {
-    height: height ? height : "100px",
-    fill: fill ? fill : "darkgray",
-    duration: duration ? duration : "1s",
+    height,
+    fill,
+    duration,
   };
 
   return (
