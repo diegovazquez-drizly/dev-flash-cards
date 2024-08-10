@@ -1,4 +1,4 @@
-import cn from "classNames";
+import cn from "classnames";
 import React, { useRef, useState } from "react";
 import { Question } from "../../pages/api/types";
 import s from "./trivia.module.scss";
