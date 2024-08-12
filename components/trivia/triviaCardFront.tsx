@@ -1,6 +1,6 @@
 import cn from "classnames";
 import React, { useRef, useState } from "react";
-import { Question } from "../../pages/api/types";
+import { Question } from "../../types/question";
 import s from "./trivia.module.scss";
 
 interface TriviaCardFrontProps {
@@ -19,7 +19,11 @@ function flipCard(
 }
 
 const tags = (tags: string[]) => {
-  return tags.map((tag) => <div className={s.Tag}>{tag}</div>);
+  return tags.map((tag) => (
+    <div key={tag} className={s.Tag}>
+      {tag}
+    </div>
+  ));
 };
 
 export default function TriviaCardFront({
@@ -73,8 +77,6 @@ export default function TriviaCardFront({
     else return "";
   };
 
-  console.log(`${questionIndex}`);
-
   return (
     <div className={cn(s.CardContainer)}>
       <p className={s.Title}>{title}</p>
@@ -89,6 +91,7 @@ export default function TriviaCardFront({
               const letter = String.fromCharCode(ACharCode + i);
               return (
                 <button
+                  key={answer}
                   className={cn(s.BaseAnswer, {
                     [s.Answer]: !answerIsWrong[i],
                     [s.CorrectAnswer]: i === correctAnswerIndex,

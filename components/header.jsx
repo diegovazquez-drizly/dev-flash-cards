@@ -48,7 +48,7 @@ export default function Header({ chooseCategory, setPage }) {
         // show error and clear cred
         setUsername("");
         setPassword("");
-        console.log(e);
+        console.error(e);
       }
     }
   };

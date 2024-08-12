@@ -9,6 +9,7 @@ export interface Question {
   tag_1: string;
   tag_2: string;
   tag_3: string;
+  show: string | boolean;
 }
 
 export function isQuestion(object: any): object is Question {

@@ -15,7 +15,7 @@ export default async (req, res) => {
     cardResponse = await db.query(cardsQuery);
     categoryResponse = await db.query(categoryQuery);
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.statusCode = 500;
     return res.json({ message: "DB Error" });
   }

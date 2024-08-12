@@ -41,7 +41,7 @@ export default function NewQuestion({ categoryData, setPage }) {
       setShowAddQuestionSuccess(true);
       clearFields();
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 

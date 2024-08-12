@@ -1,19 +1,32 @@
 import { useEffect, useState } from "react";
-import { Question } from "../../pages/api/types";
+import { Question } from "../../types/question";
+import { TagInfo } from "../../types/tagInfo";
+
+interface QuestionsResponse {
+  questions: Question[];
+  tags: TagInfo;
+}
 
 export default function useGetQuestions() {
-  const [questions, setQuestions] = useState<Question[]>();
+  const [res, setRes] = useState<QuestionsResponse>();
 
   useEffect(() => {
-    const fetchQuestions = async (): Promise<Question[]> => {
-      const res = await fetch('api/get_questions');
+    const fetchQuestions = async (): Promise<QuestionsResponse> => {
+      const res = await fetch("api/get_questions");
       const questions = await res.json();
       return questions;
     };
+
     fetchQuestions()
-      .then((data) => setQuestions(data))
+      .then((data) => {
+        setRes(data);
+      })
       .catch((e) => console.error(e));
   }, []);
 
-  return questions;
+  if (!res) return {};
+
+  const { questions, tags } = res;
+
+  return { questions, tags };
 }
