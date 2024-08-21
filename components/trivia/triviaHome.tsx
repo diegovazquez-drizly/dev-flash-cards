@@ -26,7 +26,7 @@ export default function TriviaHome() {
 
   return (
     <div className={s.TriviaContainer}>
-      <h1>Trivia</h1>
+      <h1 className={s.Heading}>Trivia</h1>
       <TriviaControls
         setCurrentQuestionIndex={setCurrentQuestionIndex}
         questionCount={filteredQuestions.length}

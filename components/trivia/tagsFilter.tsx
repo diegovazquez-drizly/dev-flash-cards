@@ -1,5 +1,5 @@
 import { MultiSelect } from "@mantine/core";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import s from "./trivia.module.scss";
 
 interface TagsFilterInterface {
