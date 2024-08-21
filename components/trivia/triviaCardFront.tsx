@@ -1,11 +1,12 @@
 import cn from "classnames";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Question } from "../../types/question";
 import s from "./trivia.module.scss";
 
 interface TriviaCardFrontProps {
   questionIndex: number;
   questions: Question[];
+  setCurrentQuestionIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const ACharCode = "A".charCodeAt(0);
@@ -29,8 +30,8 @@ const tags = (tags: string[]) => {
 export default function TriviaCardFront({
   questionIndex,
   questions,
+  setCurrentQuestionIndex
 }: TriviaCardFrontProps) {
-  const previousIndex = useRef<number>();
   const [answerIsWrong, setAnswerIsWrong] = useState([
     false,
     false,
@@ -39,6 +40,12 @@ export default function TriviaCardFront({
   ]);
   const [correctAnswerIndex, setCorrectAnswerIndex] = useState<number>(-1);
   const [isFlipCard, setIsFlipCard] = useState(false);
+
+  if (!questions[questionIndex]) {
+    setCurrentQuestionIndex(0);
+    console.error("Question index out of bounds. Index reset to 0.")
+    return;
+  }
 
   const {
     question: title,
