@@ -4,23 +4,27 @@ import Card from "./card";
 import cardTransition from "../helperFunctions/cardTransition";
 import LoadingSpinner from "./loadingSpinner/loadingSpinner";
 
-//TODO: use reducer for state instead of so many useStates
-
 export default function CardContainer({ category }) {
   const [cardData, setCardData] = useState([]);
   const [cardNumber, setCardNumber] = useState(0);
   const [currentCategory, setCurrentCategory] = useState("");
   const [showLoading, setShowLoading] = useState(false);
+
   const parentRef = useRef();
   const childRef = useRef();
 
   useEffect(() => {
-    setCardData([]);
     if (currentCategory !== category) {
       if (currentCategory) {
         setShowLoading(true);
         setTimeout(() => setShowLoading(false), 750);
       }
+    }
+  }, [category]);
+
+  useEffect(() => {
+    setCardData([]);
+    if (currentCategory !== category) {
       setCurrentCategory(category);
       fetch("/api/cards?category=" + category)
         .then((res) => res.json())
@@ -31,7 +35,7 @@ export default function CardContainer({ category }) {
             setCardNumber(0);
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
     }
   }, [category]);
 

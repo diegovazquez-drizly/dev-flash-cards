@@ -1,0 +1,117 @@
+@import '../../styles/shared.scss';
+
+.TriviaContainer {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.AnswersContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.BaseAnswer {
+  font-size: 16px;
+  border: none;
+  margin: 5px 0;
+}
+
+.Answer {
+  cursor: pointer;
+  background-color: $secondary-btn;
+  &:hover {
+    background: $secondary-btn-hover;
+  }
+}
+
+.Text {
+  text-align: left;
+  margin: 10px;
+}
+
+.CorrectAnswer {
+  border: 1px solid green;
+}
+
+.CardContainer {
+  background-color: transparent;
+  width: $card-width;
+  height: $card-height;
+  perspective: 1000px;
+}
+
+.CardInner {
+  box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 20%);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  padding: 4px;
+}
+
+.CardFlip {
+  transform: rotateY(180deg);
+  padding: 0;
+}
+
+.CardFront, .CardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.CardFront {
+  color: $primary-text;
+}
+
+.CardBack {
+  background-color: $card-back-background;
+  color: $secondary-text;
+  transform: rotateY(180deg);
+}
+
+.TriviaControlsButton {
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 30px;
+  border-radius: 11px;
+  border: none;
+  padding: 0 20px;
+  margin: 0 10px;
+  background: $primary-btn;
+
+  &:hover {
+    background-color: $primary-btn-hover;
+  }
+}
+
+.TagsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.Tag {
+  font-size: 12px;
+  background-color: rgb(240, 226, 215);
+  padding: 5px;
+  margin: 15px 5px 0;
+  width: fit-content;
+  border-radius: 5px;
+}
+
+.TagsFilterContainer {
+  width: 100%;
+}

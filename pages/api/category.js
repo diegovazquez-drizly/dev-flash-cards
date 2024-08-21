@@ -9,7 +9,7 @@ export default async (req, res) => {
   try {
     response = await db.query(query);
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.statusCode = 500;
     return res.json({ message: "DB Error" });
   }

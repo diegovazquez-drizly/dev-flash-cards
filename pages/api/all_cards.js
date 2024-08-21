@@ -1,24 +1,29 @@
 import db from "./model";
 
 export default async (req, res) => {
-  let response;
-  const { category } = req.query;
-  const query = `
-    SELECT * 
-    FROM card
+  let cardResponse;
+  let categoryResponse;
+  const cardsQuery = `
+    SELECT * FROM card
     INNER JOIN category
-    ON card.category_id = category.category_id 
-    WHERE category_name = $1   
+    ON card.category_id = category.category_id
+  `;
+  const categoryQuery = `
+    SELECT * FROM category
   `;
   try {
-    response = await db.query(query, [category]);
+    cardResponse = await db.query(cardsQuery);
+    categoryResponse = await db.query(categoryQuery);
   } catch (err) {
     console.error(err);
     res.statusCode = 500;
     return res.json({ message: "DB Error" });
   }
   res.statusCode = 200;
-  return res.json(response.rows);
+  return res.json({
+    cards: cardResponse.rows,
+    categories: categoryResponse.rows,
+  });
 };
 
 /*
