@@ -21,13 +21,25 @@ export default function TriviaControls({
   };
   return (
     <div className={s.TriviaControlsContainer}>
-      <button className={s.TriviaControlsButton} onClick={goBack}>
+      <button
+        className={s.TriviaControlsButton}
+        title="Go back"
+        onClick={goBack}
+      >
         👈
       </button>
-      <button className={s.TriviaControlsButton} onClick={randomQuestion}>
-        ❔
+      <button
+        className={s.TriviaControlsButton}
+        title="Random question"
+        onClick={randomQuestion}
+      >
+        🎲
       </button>
-      <button className={s.TriviaControlsButton} onClick={goForward}>
+      <button
+        className={s.TriviaControlsButton}
+        title="Go forward"
+        onClick={goForward}
+      >
         👉
       </button>
     </div>
