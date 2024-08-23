@@ -20,7 +20,8 @@ export default function TriviaHome() {
     });
   }, [questions, filters]);
 
-  if (!filteredQuestions || !filteredQuestions?.length) return <LoadingSpinner />;
+  if (!filteredQuestions || !filteredQuestions?.length)
+    return <LoadingSpinner />;
 
   const tagKeys = Object.keys(tags);
 
