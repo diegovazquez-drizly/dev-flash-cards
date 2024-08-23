@@ -35,7 +35,7 @@ export default function AllQuestions({ setAdminPage }) {
           <h2>All Questions</h2>
           <Button
             onClick={() => setAdminPage("home")}
-            className={styles.HomeButton}
+            className={styles.MenuButton}
           >
             Admin Home
           </Button>

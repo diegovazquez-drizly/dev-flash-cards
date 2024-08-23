@@ -30,7 +30,7 @@ const tags = (tags: string[]) => {
 export default function TriviaCardFront({
   questionIndex,
   questions,
-  setCurrentQuestionIndex
+  setCurrentQuestionIndex,
 }: TriviaCardFrontProps) {
   const [answerIsWrong, setAnswerIsWrong] = useState([
     false,
@@ -43,7 +43,7 @@ export default function TriviaCardFront({
 
   if (!questions[questionIndex]) {
     setCurrentQuestionIndex(0);
-    console.error("Question index out of bounds. Index reset to 0.")
+    console.error("Question index out of bounds. Index reset to 0.");
     return;
   }
 

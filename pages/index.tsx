@@ -10,7 +10,7 @@ import PickCategory from "../components/pickCategory";
 import TriviaHome from "../components/trivia/triviaHome";
 import styles from "../styles/Home.module.css";
 
-enum PageNames {
+export enum PageName {
   admin = "admin",
   home = "home",
   flashCards = "flash-cards",
@@ -18,14 +18,14 @@ enum PageNames {
 }
 
 export default function Home() {
-  const [category, setCategory] = useState("");
-  const [page, setPage] = useState<PageNames>(PageNames.trivia);
+  const [category, setCategory] = useState<PageName>(PageName.admin);
+  const [page, setPage] = useState<PageName>(PageName.trivia);
   const categoryData = useGetCategories();
 
-  function chooseCategory(value) {
-    if (value === "admin") return;
+  function chooseCategory(value: PageName) {
+    if (value === PageName.admin) return;
     setCategory(value);
-    setPage(PageNames.flashCards);
+    setPage(PageName.flashCards);
   }
 
   let currentPage = (
@@ -33,12 +33,12 @@ export default function Home() {
   );
 
   switch (page) {
-    case PageNames.admin:
+    case PageName.admin:
       currentPage = (
         <AdminContainer setPage={setPage} categoryData={categoryData} />
       );
       break;
-    case PageNames.home:
+    case PageName.home:
       currentPage = (
         <PickCategory
           chooseCategory={chooseCategory}
@@ -46,10 +46,10 @@ export default function Home() {
         />
       );
       break;
-    case PageNames.flashCards:
+    case PageName.flashCards:
       currentPage = category ? <CardContainer category={category} /> : null;
       break;
-    case PageNames.trivia:
+    case PageName.trivia:
       currentPage = <TriviaHome />;
       break;
     default:

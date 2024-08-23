@@ -17,9 +17,11 @@ export default async (req, res) => {
 
   try {
     response = await db.query(query, [username]);
+
     const { rows } = response;
-    const passwordHash = rows[0].password;
+
     if (rows.length) {
+      const passwordHash = rows[0]?.password;
       const result = await bcrypt.compare(password, passwordHash);
       if (result) {
         const authToken = uuidv4();
@@ -28,9 +30,10 @@ export default async (req, res) => {
       }
     } else {
       res.statusCode = 401;
-      return res.json({ message: "User not found" });
+      return res.json({ message: "User / password not found" });
     }
   } catch (err) {
+    console.error(err);
     res.statusCode = 500;
     return res.json({ message: "DB Error" });
   }
