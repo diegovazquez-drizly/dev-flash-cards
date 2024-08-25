@@ -16,7 +16,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 // TODO:
 // look at menu opening speed
-// go back should start from the end if at 0
 // hide question if already answered (reset button)
 // curate questions
 // add intuit specific questions
