@@ -11,7 +11,6 @@ export default function TriviaControls({
   questionCount,
 }: TriviaControlsProps) {
   const goBack = () => {
-
     setCurrentQuestionIndex((i) => (i > 0 ? i - 1 : questionCount - 1));
   };
   const goForward = () => {

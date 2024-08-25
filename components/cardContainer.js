@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import styles from "../styles/Card.module.css";
 import Card from "./card";
-import cardTransition from "../helperFunctions/cardTransition";
+import cardTransition from "../utils/cardTransition";
 import LoadingSpinner from "./loadingSpinner/loadingSpinner";
 
 export default function CardContainer({ category }) {
