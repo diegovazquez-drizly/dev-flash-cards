@@ -14,11 +14,10 @@ export default function TagsFilter({
   return (
     <div className={s.TagsFilterContainer}>
       <MultiSelect
-        label="Tags"
+        label=""
         placeholder="Choose a tag(s)"
         data={tagKeys.sort()}
         onChange={setFilters}
-        className={s.TagsFilter}
       />
     </div>
   );

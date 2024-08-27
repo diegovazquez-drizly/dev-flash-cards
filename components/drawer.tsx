@@ -5,6 +5,8 @@ import { PageName } from "../pages";
 import styles from "../styles/Header.module.css";
 import AdminDialog from "./adminDialog";
 
+const ICON_SIZE = 30;
+
 export default function MenuDrawer({
   chooseCategory,
   setPage,
@@ -22,30 +24,37 @@ export default function MenuDrawer({
 
   const handleAdmin = () => {
     if (checkAuthToken()) {
-      setPage("admin");
+      setPage(PageName.admin);
       return chooseCategory(PageName.admin);
     } else {
       setShowDialog(true);
     }
+    toggle();
+  };
+
+  const handleHome = () => {
+    setPage(PageName.home);
+    toggle();
   };
 
   const handleTrivia = () => {
-    setPage("trivia");
+    setPage(PageName.trivia);
+    toggle();
   };
   return (
     <>
       <Drawer opened={opened} onClose={toggle}>
         <div className={styles.HeaderContainer}>
-          <Button className={styles.MenuButton} onClick={() => setPage("home")}>
-            <HomeIcon height={20} width={20} />
+          <Button className={styles.MenuButton} onClick={handleHome}>
+            <HomeIcon height={ICON_SIZE} width={ICON_SIZE} />
             <span className={styles.MenuButtonText}>Home</span>
           </Button>
           <Button className={styles.MenuButton} onClick={handleTrivia}>
-            <TriviaIcon height={20} width={20} />
+            <TriviaIcon height={ICON_SIZE} width={ICON_SIZE} />
             <span className={styles.MenuButtonText}>Trivia</span>
           </Button>
           <Button className={styles.MenuButton} onClick={handleAdmin}>
-            <AdminIcon height={20} width={20} />
+            <AdminIcon height={ICON_SIZE} width={ICON_SIZE} />
             <span className={styles.MenuButtonText}>Admin</span>
           </Button>
         </div>

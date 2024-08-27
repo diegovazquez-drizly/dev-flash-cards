@@ -12,11 +12,12 @@
   justify-content: center;
   align-items: center;
   background-color: transparent;
+  margin: 10px;
 }
 
 .MenuButtonText {
   color: black;
-  font-size: 16px;
+  font-size: 20px;
   margin-left: 12px;
 }
 

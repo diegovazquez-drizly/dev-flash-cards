@@ -2,8 +2,12 @@ import cn from "classnames";
 import React, { useState } from "react";
 import { Question } from "../../types/question";
 import s from "./trivia.module.scss";
+import Storage from "../../utils/storage";
+import { Button } from "@mantine/core";
+import ResetDialog from "./resetDialog";
+import { useDisclosure } from "@mantine/hooks";
 
-interface TriviaCardFrontProps {
+interface TriviaCardProps {
   questionIndex: number;
   questions: Question[];
   setCurrentQuestionIndex: React.Dispatch<React.SetStateAction<number>>;
@@ -27,11 +31,11 @@ const tags = (tags: string[]) => {
   ));
 };
 
-export default function TriviaCardFront({
+export default function TriviaCard({
   questionIndex,
   questions,
   setCurrentQuestionIndex,
-}: TriviaCardFrontProps) {
+}: TriviaCardProps) {
   const [answerIsWrong, setAnswerIsWrong] = useState([
     false,
     false,
@@ -40,6 +44,7 @@ export default function TriviaCardFront({
   ]);
   const [correctAnswerIndex, setCorrectAnswerIndex] = useState<number>(-1);
   const [isFlipCard, setIsFlipCard] = useState(false);
+  const [opened, { toggle }] = useDisclosure(false);
 
   if (!questions[questionIndex]) {
     setCurrentQuestionIndex(0);
@@ -58,6 +63,7 @@ export default function TriviaCardFront({
     tag_1,
     tag_2,
     tag_3,
+    id,
   } = questions[questionIndex];
 
   const answers = [answer_1, answer_2, answer_3, answer_4];
@@ -69,6 +75,7 @@ export default function TriviaCardFront({
     if (answers[index] === correct_answer) {
       setCorrectAnswerIndex(index);
       flipCard(setIsFlipCard);
+      handleCorrectAnswer(id);
     } else {
       setAnswerIsWrong((state) => {
         const newState = [...state];
@@ -82,6 +89,12 @@ export default function TriviaCardFront({
     if (i === correctAnswerIndex) return "✅";
     else if (answerIsWrong[i]) return "❌";
     else return "";
+  };
+
+  const handleCorrectAnswer = (questionId: string) => {
+    const history: string[] = Storage.get();
+    history.push(questionId);
+    Storage.save(JSON.stringify(history));
   };
 
   return (
@@ -117,7 +130,13 @@ export default function TriviaCardFront({
           <p className={s.Text}>{detailed_answer}</p>
         </div>
       </div>
-      <div className={s.TagsContainer}>{tags([tag_1, tag_2, tag_3])}</div>
+      <div className={s.CardBase}>
+        <div className={s.TagsContainer}>{tags([tag_1, tag_2, tag_3])}</div>
+        <Button variant="outline" className={s.ResetButton} onClick={toggle}>
+          Reset
+        </Button>
+      </div>
+      <ResetDialog showDialog={opened} setShowDialog={toggle} close={toggle} />
     </div>
   );
 }
