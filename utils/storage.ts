@@ -14,9 +14,9 @@ export default class Storage {
     }
   }
 
-  public static delete(key: string) {
+  public static delete() {
     if (globalThis?.localStorage) {
-      localStorage.removeItem(key);
+      localStorage.removeItem(KEY);
     }
   }
 }

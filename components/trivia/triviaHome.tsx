@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import LoadingSpinner from "../loadingSpinner/loadingSpinner";
-import TriviaCardFront from "./triviaCardFront";
+import TriviaCard from "./triviaCard";
 import TriviaControls from "./triviaControls";
 import useGetQuestions from "./useGetQuestions";
 import TagsFilter from "./tagsFilter";
@@ -14,6 +14,7 @@ export default function TriviaHome() {
   const questionHistory = Storage.get();
 
   const filteredQuestions = useMemo(() => {
+    if (!questions) return [];
     return questions
       .filter((q) => {
         if (filters.length === 0) return true;
@@ -38,7 +39,7 @@ export default function TriviaHome() {
         questionCount={filteredQuestions.length}
       />
       <TagsFilter tagKeys={tagKeys} setFilters={setFilters} />
-      <TriviaCardFront
+      <TriviaCard
         questions={filteredQuestions}
         questionIndex={currentQuestionIndex}
         key={currentQuestionIndex}

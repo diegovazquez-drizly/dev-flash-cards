@@ -114,7 +114,7 @@
   font-size: 12px;
   background-color: rgb(240, 226, 215);
   padding: 5px;
-  margin: 15px 5px 0;
+  margin: auto 5px;
   width: fit-content;
   border-radius: 5px;
 }
@@ -122,6 +122,21 @@
 .TagsFilterContainer {
   margin-top: 12px;
   width: 100%;
+}
+
+.CardBase {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.ResetButton {
+  color: red;
+  border: none;
+
+  &:hover {
+    color: darkred;
+  }
 }
 
 @media (max-width: $mobile-breakpoint) {
