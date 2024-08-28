@@ -1,0 +1,2 @@
+question|answer_1|answer_2|answer_3|answer_4|correct_answer|detailed_answer|tag_1|tag_2|tag_3|id
+How does QBO handle navigation between pages?|NavigationManager in web-shell-core|Next.js|React Router|file system|NavigationManager in web-shell-core|The repo web-shell-core that contains the shell used by the micro-frontend provides a class NavigationManager that contains methods that handles navigation.|intuit|qbo|micro-frontends|intuit1
