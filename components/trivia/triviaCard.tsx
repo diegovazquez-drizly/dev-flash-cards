@@ -136,6 +136,7 @@ export default function TriviaCard({
           Reset
         </Button>
       </div>
+      <p>Questions remaining: {questions.length}</p>
       <ResetDialog showDialog={opened} setShowDialog={toggle} close={toggle} />
     </div>
   );
