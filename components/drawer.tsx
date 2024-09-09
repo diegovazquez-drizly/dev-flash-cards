@@ -4,6 +4,7 @@ import { AdminIcon, HomeIcon, TriviaIcon } from "../icons";
 import { PageName } from "../pages";
 import styles from "../styles/Header.module.css";
 import AdminDialog from "./adminDialog";
+import { SpadeIcon } from "../icons/spade";
 
 const ICON_SIZE = 30;
 
@@ -41,6 +42,12 @@ export default function MenuDrawer({
     setPage(PageName.trivia);
     toggle();
   };
+
+  const handleBaccarat = () => {
+    setPage(PageName.baccarat);
+    toggle();
+  };
+
   return (
     <>
       <Drawer opened={opened} onClose={toggle}>
@@ -56,6 +63,10 @@ export default function MenuDrawer({
           <Button className={styles.MenuButton} onClick={handleAdmin}>
             <AdminIcon height={ICON_SIZE} width={ICON_SIZE} />
             <span className={styles.MenuButtonText}>Admin</span>
+          </Button>
+          <Button className={styles.MenuButton} onClick={handleBaccarat}>
+            <SpadeIcon height={ICON_SIZE} width={ICON_SIZE} />
+            <span className={styles.MenuButtonText}>Baccarat</span>
           </Button>
         </div>
       </Drawer>

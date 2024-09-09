@@ -1,0 +1,72 @@
+.BaccaratContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 16px;
+}
+
+.NumberInput {
+  width: 100%;
+  min-width: 179px;
+}
+
+.BaccaratSummaryContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.Label {
+  color: #292929;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.Value {
+  font-weight: normal;
+  margin: 0;
+}
+
+.Title {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.InputsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.SummaryContainer {
+  width: 50%;
+}
+
+.Divider {
+  margin: 0 8px;
+}
+
+.Heading {
+  margin: 0;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.DealButton {
+  margin: 20px 0;
+  width: 150px;
+}
+
+.Table {
+  height: 50vh;
+  overflow-y: auto;
+  border: 1px solid #eeeeee;
+}
+
+.MultiHandHistoriesContainer {
+  display: flex;
+}
