@@ -1,7 +1,6 @@
 import { BetStrategy } from "./strategies";
-import GameResult from "../../../lib/baccarat-engine/types/gameResult";
 import { Winner, WinnerType } from "../types/types";
-import BaccaratGameEngine from "../../../lib/baccarat-engine/src/gameEngine/baccaratGameEngine";
+import BaccaratGameEngine from "../../../baccarat-engine/src/gameEngine/baccaratGameEngine";
 
 export interface GameResults {
   bankRoll: number;
@@ -32,14 +31,14 @@ function randomNumberGenerator() {
   return Math.floor(Math.random() * 1000001);
 }
 
-export function dealHand(): Partial<GameResult> {
+export function dealHand(): any {
   const hand = randomNumberGenerator();
   const gameResult: Record<"outcome", WinnerType> = { outcome: Winner.tie };
   if (hand <= odds[Winner.banker]) gameResult.outcome = Winner.banker;
   else if (hand <= odds[Winner.banker] + odds[Winner.player])
     gameResult.outcome = Winner.player;
   else gameResult.outcome = Winner.tie;
-  return gameResult as GameResult;
+  return gameResult;
 }
 
 export function gameWithStrategy(
