@@ -13,7 +13,7 @@ export const Title = ({ children }: { children?: React.ReactNode }) => (
   <p className={s.Title}>{children}</p>
 );
 
-interface BaccaratMultiSummaryProps {
+interface BaccaratMultiSummaryProps { 
   multiGameResult: MultiGameResult;
 }
 
@@ -21,16 +21,15 @@ interface BaccaratMultiSummariesProps {
   multiGameResults: MultiGameResult[];
 }
 
-function BaccaratMultiSummary({
-  multiGameResult,
-}: BaccaratMultiSummaryProps) {
+function BaccaratMultiSummary({ multiGameResult }: BaccaratMultiSummaryProps) {
   if (!multiGameResult)
     return (
       <div className={s.SummaryContainer}>
         <Title>Summary</Title>
       </div>
     );
-  const totalGames = (multiGameResult.bust ?? 0) + (multiGameResult.winner ?? 0);
+  const totalGames =
+    (multiGameResult.bust ?? 0) + (multiGameResult.winner ?? 0);
   const winningPercentage = ((multiGameResult?.winner ?? 0) / totalGames) * 100;
   const bustPercentage = ((multiGameResult?.bust ?? 0) / totalGames) * 100;
   const totalWinnings = multiGameResult.outcomes.reduce(
@@ -59,11 +58,16 @@ function BaccaratMultiSummary({
   );
 }
 
-export default function BaccaratMultiSummaries({multiGameResults}: BaccaratMultiSummariesProps) {
+export default function BaccaratMultiSummaries({
+  multiGameResults,
+}: BaccaratMultiSummariesProps) {
   return (
     <>
       {(multiGameResults ?? []).map((result) => (
-        <BaccaratMultiSummary key={result.strategyName} multiGameResult={result} />
+        <BaccaratMultiSummary
+          key={result.strategyName}
+          multiGameResult={result}
+        />
       ))}
     </>
   );

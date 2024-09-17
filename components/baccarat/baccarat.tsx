@@ -40,7 +40,9 @@ function Baccarat({ multiSession }: Props) {
   const [highWaterMark, setHighWaterMark] = useState(INITIAL_BANKROLL);
   const [handsToBust, setHandsToBust] = useState<number>();
   const [gameResults, setGameResults] = useState<GameResults[]>([]);
-  const [multiGameResults, setMultiGameResults] = useState<MultiGameResult[]>([]);
+  const [multiGameResults, setMultiGameResults] = useState<MultiGameResult[]>(
+    []
+  );
   const [betStrategies, setBetStrategies] = useState<string | string[]>([
     strategies[0].name,
   ]);

@@ -1,7 +1,7 @@
-import { BetStrategy } from "./strategies.js";
-import GameResult from "../../../lib/baccarat-engine/types/gameResult.js";
+import { BetStrategy } from "./strategies";
+import GameResult from "../../../lib/baccarat-engine/types/gameResult";
 import { Winner, WinnerType } from "../types/types";
-import BaccaratGameEngine from "../../../lib/baccarat-engine/src/gameEngine/baccaratGameEngine.js";
+import BaccaratGameEngine from "../../../lib/baccarat-engine/src/gameEngine/baccaratGameEngine";
 
 export interface GameResults {
   bankRoll: number;

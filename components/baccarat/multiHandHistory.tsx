@@ -21,9 +21,7 @@ interface MultiHandHistoriesProps {
   multiGameResults: MultiGameResult[];
 }
 
-function MultiHandHistory({
-  multiGameResult,
-}: MultiHandHistoryProps) {
+function MultiHandHistory({ multiGameResult }: MultiHandHistoryProps) {
   if (!multiGameResult) {
     return (
       <div className={s.Table}>
