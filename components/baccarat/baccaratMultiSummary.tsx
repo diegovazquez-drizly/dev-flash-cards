@@ -13,7 +13,7 @@ export const Title = ({ children }: { children?: React.ReactNode }) => (
   <p className={s.Title}>{children}</p>
 );
 
-interface BaccaratMultiSummaryProps { 
+interface BaccaratMultiSummaryProps {
   multiGameResult: MultiGameResult;
 }
 

@@ -66,7 +66,7 @@ function Baccarat({ multiSession }: Props) {
       };
       const bettingStrategy = strategies.find(
         (s) => s.name === betStrategies
-      ).strategies;
+      )?.strategies;
       const gameResults = gameWithStrategyUsingEngine(
         bettingStrategy,
         +bankRoll,
