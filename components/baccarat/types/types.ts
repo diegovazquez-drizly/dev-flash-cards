@@ -1,4 +1,8 @@
-import type { GameResultOutcomes } from "../../../lib/baccarat-engine/types/gameResultEnums";
+const enum GameResultOutcomes {
+  Player = "player",
+  Banker = "banker",
+  Tie = "tie",
+}
 
 export type WinnerType =
   | "player"
