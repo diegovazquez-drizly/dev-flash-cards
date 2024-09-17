@@ -1,4 +1,4 @@
-import type { GameResultOutcomes } from "../../../lib/baccarat-engine/types/gameResultEnums";
+import type { GameResultOutcomes } from "lib/baccarat-engine/types/gameResultEnums";
 
 export type WinnerType =
   | "player"
