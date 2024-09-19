@@ -9,12 +9,14 @@ import { useGetCategories } from "../components/hooks";
 import PickCategory from "../components/pickCategory";
 import TriviaHome from "../components/trivia/triviaHome";
 import styles from "../styles/Home.module.css";
+import BaccaratApp from "../components/baccarat/baccaratApp";
 
 export enum PageName {
   admin = "admin",
   home = "home",
   flashCards = "flash-cards",
   trivia = "trivia",
+  baccarat = "baccarat",
 }
 
 export default function Home() {
@@ -51,6 +53,9 @@ export default function Home() {
       break;
     case PageName.trivia:
       currentPage = <TriviaHome />;
+      break;
+    case PageName.baccarat:
+      currentPage = <BaccaratApp />;
       break;
     default:
       currentPage = (
