@@ -114,8 +114,6 @@ export function gameWithStrategyUsingEngine(
       currentBet: 0,
     };
 
-    console.log("type = ", type);
-
     switch (type) {
       case "Martingale":
       case "Fibonacci":
