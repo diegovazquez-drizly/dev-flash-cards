@@ -15,10 +15,7 @@ import {
   Winner,
 } from "./types/types";
 import { gameWithStrategyUsingEngine } from "./utils/gameUtils";
-import {
-  BetStrategies,
-  betStrategies as strategies,
-} from "./utils/strategies";
+import { BetStrategies, betStrategies as strategies } from "./utils/strategies";
 
 const INITIAL_BANKROLL = 100;
 const INITIAL_BET_SIZE = 10;

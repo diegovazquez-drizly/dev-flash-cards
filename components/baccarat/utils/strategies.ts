@@ -87,7 +87,7 @@ export const fibonacciBanker4: BetStrategy[] = [
     bet: 5,
     side: Winner.banker,
   },
-]
+];
 
 export const fibonacciPlayer4: BetStrategy[] = [
   {
@@ -106,21 +106,21 @@ export const fibonacciPlayer4: BetStrategy[] = [
     bet: 5,
     side: Winner.player,
   },
-]
+];
 
 export const flatBanker: BetStrategy[] = [
   {
     bet: 1,
     side: Winner.banker,
   },
-]
+];
 
 export const flatPlayer: BetStrategy[] = [
   {
     bet: 1,
     side: Winner.player,
   },
-]
+];
 export const betStrategies: BetStrategies[] = [
   {
     name: "P-B-P-M3",
@@ -149,7 +149,8 @@ export const betStrategies: BetStrategies[] = [
   {
     name: "Flat-B",
     strategy: flatBanker,
-  },  {
+  },
+  {
     name: "Flat-P",
     strategy: flatPlayer,
   },
