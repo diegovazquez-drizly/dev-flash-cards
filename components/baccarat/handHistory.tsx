@@ -1,7 +1,13 @@
-import { GameResults } from "./utils/gameUtils";
+import { GameResults } from "./types/types";
 import React from "react";
 import { Table } from "@mantine/core";
 import s from "./baccarat.module.scss";
+import BaccaratLineChart from "./baccaratLineChart";
+import { Accordion } from "@mantine/core";
+
+interface HandHistoryProps {
+  gameResults: GameResults[];
+}
 
 const renderRow = (row: GameResults) => {
   return (
@@ -15,11 +21,7 @@ const renderRow = (row: GameResults) => {
   );
 };
 
-interface HandHistoryProps {
-  gameResults: GameResults[];
-}
-
-export default function HandHistory({ gameResults }: HandHistoryProps) {
+const HistoryTable = ({ gameResults }: HandHistoryProps) => {
   return (
     <div className={s.Table}>
       <Table>
@@ -36,5 +38,32 @@ export default function HandHistory({ gameResults }: HandHistoryProps) {
         <Table.Tbody>{gameResults.map((row) => renderRow(row))}</Table.Tbody>
       </Table>
     </div>
+  );
+};
+
+export default function HandHistory({ gameResults }: HandHistoryProps) {
+  const accordiansItems = [
+    {
+      value: "Line graph",
+      content: <BaccaratLineChart gameResults={gameResults} />,
+    },
+    {
+      value: "Table",
+      content: <HistoryTable gameResults={gameResults} />,
+    },
+  ];
+  const items = accordiansItems.map((item) => (
+    <Accordion.Item key={item.value} value={item.value}>
+      <Accordion.Control>{item.value}</Accordion.Control>
+      <Accordion.Panel>{item.content}</Accordion.Panel>
+    </Accordion.Item>
+  ));
+
+  if (!gameResults || !gameResults.length) return null;
+
+  return (
+    <>
+      <Accordion defaultValue="Line graph">{items}</Accordion>
+    </>
   );
 }

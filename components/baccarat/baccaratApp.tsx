@@ -1,9 +1,5 @@
 import { Tabs, rem } from "@mantine/core";
-import {
-  IconPhoto,
-  IconMessageCircle,
-  IconSettings,
-} from "@tabler/icons-react";
+import { IconMessageCircle, IconPhoto } from "@tabler/icons-react";
 import Baccarat from "./baccarat";
 import s from "./baccarat.module.scss";
 
@@ -13,7 +9,7 @@ export default function BaccaratApp() {
   return (
     <div className={s.BaccaratContainer}>
       <h1 className={s.Heading}>Baccarat</h1>
-      <Tabs defaultValue="single">
+      <Tabs defaultValue="single" className={s.Tabs}>
         <Tabs.List>
           <Tabs.Tab
             value="single"

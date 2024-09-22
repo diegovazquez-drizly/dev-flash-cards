@@ -1,8 +1,7 @@
 import { MultiSelect, NumberInput, Select } from "@mantine/core";
 import { Dispatch, SetStateAction } from "react";
 import s from "./baccarat.module.scss";
-import { Title } from "./baccaratSummary";
-import { BetStrategies, betStrategies } from "./utils/strategies";
+import { betStrategies } from "./utils/strategies";
 
 interface BaccaratInputsProps {
   numberOfHands: number | string;
@@ -37,7 +36,7 @@ export default function BaccaratInputs({
 }: BaccaratInputsProps) {
   return (
     <div className={s.InputsContainer}>
-      <Title>Inputs</Title>
+      {/* <Title>Inputs</Title> */}
       <NumberInput
         className={s.NumberInput}
         label="Number of hands"

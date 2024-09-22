@@ -1,6 +1,5 @@
-import { GameResults } from "./utils/gameUtils";
+import { Select, Table } from "@mantine/core";
 import React from "react";
-import { Table } from "@mantine/core";
 import s from "./baccarat.module.scss";
 import { MultiGameResult, Outcome } from "./types/types";
 
@@ -68,11 +67,23 @@ function MultiHandHistory({ multiGameResult }: MultiHandHistoryProps) {
 export default function MultiHandHistories({
   multiGameResults,
 }: MultiHandHistoriesProps) {
+  const [betStrategy, setBetStrategy] = React.useState(
+    multiGameResults?.[0]?.strategyName ?? []
+  );
   return (
     <div className={s.MultiHandHistoriesContainer}>
-      {multiGameResults.map((result) => (
-        <MultiHandHistory key={result.strategyName} multiGameResult={result} />
-      ))}
+      <Select
+        label="Strategy results"
+        placeholder="Pick strategy"
+        data={multiGameResults.map((s) => s.strategyName)}
+        value={betStrategy as string}
+        onChange={setBetStrategy}
+      />
+      <MultiHandHistory
+        multiGameResult={multiGameResults.find(
+          (s) => s.strategyName === betStrategy
+        )}
+      />
     </div>
   );
 }

@@ -1,18 +1,21 @@
+import { Button, Divider } from "@mantine/core";
 import { useState } from "react";
+import s from "./baccarat.module.scss";
 import BaccaratInputs from "./baccaratInputs";
 import BaccaratSummary from "./baccaratSummary";
+import TableSummary from "./baccaratTableSummary";
 import HandHistory from "./handHistory";
-import { Count, MultiGameResult, Outcome, Winner } from "./types/types";
-import { GameResults, gameWithStrategyUsingEngine } from "./utils/gameUtils";
-import {
-  BetStrategies,
-  playerBankerPlayerMartingale2,
-} from "./utils/strategies";
-import s from "./baccarat.module.scss";
-import { Button, Divider } from "@mantine/core";
-import BaccaratMultiSummaries from "./baccaratMultiSummary";
 import MultiHandHistory from "./multiHandHistory";
-import { betStrategies as strategies } from "./utils/strategies";
+import {
+  Count,
+  GameResults,
+  GameResultsObject,
+  MultiGameResult,
+  Outcome,
+  Winner,
+} from "./types/types";
+import { gameWithStrategyUsingEngine } from "./utils/gameUtils";
+import { BetStrategies, betStrategies as strategies } from "./utils/strategies";
 
 const INITIAL_BANKROLL = 100;
 const INITIAL_BET_SIZE = 10;
@@ -43,6 +46,8 @@ function Baccarat({ multiSession }: Props) {
   const [multiGameResults, setMultiGameResults] = useState<MultiGameResult[]>(
     []
   );
+  const [gameResultsObject, setGameResultsObject] =
+    useState<GameResultsObject>();
   const [betStrategies, setBetStrategies] = useState<string | string[]>([
     strategies[0].name,
   ]);
@@ -66,7 +71,8 @@ function Baccarat({ multiSession }: Props) {
       };
       const bettingStrategy = strategies.find(
         (s) => s.name === betStrategies
-      )?.strategies;
+      )?.strategy;
+      if (!bettingStrategy) return alert("No strategy selected");
       const gameResults = gameWithStrategyUsingEngine(
         bettingStrategy,
         +bankRoll,
@@ -92,6 +98,7 @@ function Baccarat({ multiSession }: Props) {
       betStrategies.includes(strategy.name)
     );
     const resultsArray: MultiGameResult[] = [];
+    const gameResultsObject: GameResultsObject = {};
     for (const strategy of bettingStrategies) {
       const outcomes: Outcome[] = [];
       const results: MultiGameResult = {
@@ -100,14 +107,19 @@ function Baccarat({ multiSession }: Props) {
         outcomes,
         strategyName: strategy.name,
       };
+      const currentStrategy = strategies.find(
+        (s) => s.name === strategy.name
+      ).strategy;
       for (let i = 0; i < +sessions; i++) {
         const gameResults = gameWithStrategyUsingEngine(
-          playerBankerPlayerMartingale2,
+          currentStrategy,
           +bankRoll,
           +betSize,
           +numberOfHands,
           +targetWinnings
         );
+        gameResultsObject[strategy.name] ||= [];
+        gameResultsObject[strategy.name].push(gameResults);
         const didBust = gameResults.at(-1)?.bust;
         const winnings = gameResults.at(-1)?.bankRoll - +bankRoll;
         results.outcomes.push({
@@ -120,6 +132,7 @@ function Baccarat({ multiSession }: Props) {
       resultsArray.push(results);
     }
     setMultiGameResults(resultsArray);
+    setGameResultsObject(gameResultsObject);
   };
 
   return (
@@ -140,7 +153,16 @@ function Baccarat({ multiSession }: Props) {
           betStrategy={betStrategies}
           setBetStrategy={setBetStrategies}
         />
-        <Divider m={8} size="sm" orientation="vertical" />
+        <div className={s.DealButtonWrapper}>
+          <Button
+            className={s.DealButton}
+            type="button"
+            onClick={multiSession ? dealMultiHands : dealHands}
+          >
+            Deal hands
+          </Button>
+        </div>
+        <Divider m={"md"} orientation="horizontal" />
         {!multiSession ? (
           <BaccaratSummary
             count={count}
@@ -148,16 +170,11 @@ function Baccarat({ multiSession }: Props) {
             handsToBust={handsToBust}
           />
         ) : (
-          <BaccaratMultiSummaries multiGameResults={multiGameResults} />
+          <TableSummary multiGameResults={multiGameResults} />
         )}
       </div>
-      <Button
-        className={s.DealButton}
-        type="button"
-        onClick={multiSession ? dealMultiHands : dealHands}
-      >
-        Deal hands
-      </Button>
+
+      <Divider m={"md"} orientation="horizontal" />
       {multiSession ? (
         <MultiHandHistory multiGameResults={multiGameResults} />
       ) : (

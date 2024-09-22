@@ -7,10 +7,10 @@ export interface BetStrategy {
 
 export interface BetStrategies {
   name: string;
-  strategies: BetStrategy[];
+  strategy: BetStrategy[];
 }
 
-export const playerBankerPlayerMartingale2: BetStrategy[] = [
+export const playerBankerPlayerMartingale3: BetStrategy[] = [
   {
     bet: 1,
     side: Winner.player,
@@ -25,7 +25,7 @@ export const playerBankerPlayerMartingale2: BetStrategy[] = [
   },
 ];
 
-export const playerMartingale2: BetStrategy[] = [
+export const playerMartingale3: BetStrategy[] = [
   {
     bet: 1,
     side: Winner.player,
@@ -40,7 +40,7 @@ export const playerMartingale2: BetStrategy[] = [
   },
 ];
 
-export const bankerMartingale2: BetStrategy[] = [
+export const bankerMartingale3: BetStrategy[] = [
   {
     bet: 1,
     side: Winner.banker,
@@ -55,7 +55,7 @@ export const bankerMartingale2: BetStrategy[] = [
   },
 ];
 
-export const bankerPlayerBankerMartingale2: BetStrategy[] = [
+export const bankerPlayerBankerMartingale3: BetStrategy[] = [
   {
     bet: 1,
     side: Winner.banker,
@@ -70,21 +70,88 @@ export const bankerPlayerBankerMartingale2: BetStrategy[] = [
   },
 ];
 
+export const fibonacciBanker4: BetStrategy[] = [
+  {
+    bet: 1,
+    side: Winner.banker,
+  },
+  {
+    bet: 2,
+    side: Winner.banker,
+  },
+  {
+    bet: 3,
+    side: Winner.banker,
+  },
+  {
+    bet: 5,
+    side: Winner.banker,
+  },
+];
+
+export const fibonacciPlayer4: BetStrategy[] = [
+  {
+    bet: 1,
+    side: Winner.player,
+  },
+  {
+    bet: 2,
+    side: Winner.player,
+  },
+  {
+    bet: 3,
+    side: Winner.player,
+  },
+  {
+    bet: 5,
+    side: Winner.player,
+  },
+];
+
+export const flatBanker: BetStrategy[] = [
+  {
+    bet: 1,
+    side: Winner.banker,
+  },
+];
+
+export const flatPlayer: BetStrategy[] = [
+  {
+    bet: 1,
+    side: Winner.player,
+  },
+];
 export const betStrategies: BetStrategies[] = [
   {
-    name: "P-B-P-M2",
-    strategies: playerBankerPlayerMartingale2,
+    name: "P-B-P-M3",
+    strategy: playerBankerPlayerMartingale3,
   },
   {
-    name: "Px3-M2",
-    strategies: playerMartingale2,
+    name: "Px3-M3",
+    strategy: playerMartingale3,
   },
   {
-    name: "Bx3-M2",
-    strategies: bankerMartingale2,
+    name: "Bx3-M3",
+    strategy: bankerMartingale3,
   },
   {
-    name: "B-P-B-M2",
-    strategies: bankerPlayerBankerMartingale2,
+    name: "B-P-B-M3",
+    strategy: bankerPlayerBankerMartingale3,
+  },
+  {
+    name: "Bx3-F4",
+    strategy: fibonacciBanker4,
+  },
+  {
+    name: "Px3-F4",
+    strategy: fibonacciPlayer4,
+  },
+  {
+    name: "Flat-B",
+    strategy: flatBanker,
+  },
+  {
+    name: "Flat-P",
+    strategy: flatPlayer,
   },
 ];

@@ -1,6 +1,6 @@
-import { Count, MultiGameResult, Winner } from "./types/types";
-import { percentages } from "./utils/gameUtils";
 import s from "./baccarat.module.scss";
+import TableSummary from "./baccaratTableSummary";
+import { MultiGameResult } from "./types/types";
 
 const P = ({ children }: { children?: React.ReactNode }) => (
   <p className={s.Label}>{children}</p>
@@ -37,7 +37,7 @@ function BaccaratMultiSummary({ multiGameResult }: BaccaratMultiSummaryProps) {
     0
   );
   const averageWinnings = totalWinnings / totalGames;
-  const endBankroll = totalGames * 100 + totalWinnings;
+
   return (
     <div className={s.SummaryContainer}>
       <Title>{multiGameResult.strategyName} Summary</Title>
@@ -69,6 +69,7 @@ export default function BaccaratMultiSummaries({
           multiGameResult={result}
         />
       ))}
+      <TableSummary multiGameResults={multiGameResults} />
     </>
   );
 }

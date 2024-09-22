@@ -4,6 +4,19 @@ const enum GameResultOutcomes {
   Tie = "tie",
 }
 
+export interface GameResults {
+  bankRoll: number;
+  winner: WinnerType;
+  unitsWon: number;
+  currentBet: number;
+  currentSide: WinnerType;
+  strategyIndex: number;
+  id: string;
+  handNumber: number;
+  bust: boolean;
+  targetReached: boolean;
+}
+
 export type WinnerType =
   | "player"
   | "banker"
@@ -31,3 +44,5 @@ export interface MultiGameResult {
   outcomes: Outcome[];
   strategyName: string;
 }
+
+export type GameResultsObject = Record<string, GameResults[][]>;
