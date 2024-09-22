@@ -21,7 +21,7 @@ export enum PageName {
 
 export default function Home() {
   const [category, setCategory] = useState<PageName>(PageName.admin);
-  const [page, setPage] = useState<PageName>(PageName.trivia);
+  const [page, setPage] = useState<PageName>(PageName.baccarat);
   const categoryData = useGetCategories();
 
   function chooseCategory(value: PageName) {

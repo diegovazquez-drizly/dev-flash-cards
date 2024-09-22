@@ -1,19 +1,6 @@
 import { BetStrategy } from "./strategies";
-import { Winner, WinnerType } from "../types/types";
+import { GameResults, Winner, WinnerType } from "../types/types";
 import BaccaratGameEngine from "../../../baccarat-engine/src/gameEngine/baccaratGameEngine";
-
-export interface GameResults {
-  bankRoll: number;
-  winner: WinnerType;
-  unitsWon: number;
-  currentBet: number;
-  currentSide: WinnerType;
-  strategyIndex: number;
-  id: string;
-  handNumber: number;
-  bust: boolean;
-  targetReached: boolean;
-}
 
 export const odds = {
   [Winner.banker]: 458597,
@@ -22,9 +9,9 @@ export const odds = {
 };
 
 export const percentages = {
-  [Winner.banker]: odds[Winner.banker] / 10000 + "%",
-  [Winner.player]: odds[Winner.player] / 10000 + "%",
-  [Winner.tie]: odds[Winner.tie] / 10000 + "%",
+  [Winner.banker]: (odds[Winner.banker] / 10000).toFixed(2) + "%",
+  [Winner.player]: (odds[Winner.player] / 10000).toFixed(2) + "%",
+  [Winner.tie]: (odds[Winner.tie] / 10000).toFixed(2) + "%",
 };
 
 function randomNumberGenerator() {
