@@ -17,7 +17,6 @@ import {
 import { gameWithStrategyUsingEngine } from "./utils/gameUtils";
 import {
   BetStrategies,
-  playerBankerPlayerMartingale2,
   betStrategies as strategies,
 } from "./utils/strategies";
 
@@ -75,7 +74,7 @@ function Baccarat({ multiSession }: Props) {
       };
       const bettingStrategy = strategies.find(
         (s) => s.name === betStrategies
-      )?.strategies;
+      )?.strategy;
       if (!bettingStrategy) return alert("No strategy selected");
       const gameResults = gameWithStrategyUsingEngine(
         bettingStrategy,
@@ -111,9 +110,12 @@ function Baccarat({ multiSession }: Props) {
         outcomes,
         strategyName: strategy.name,
       };
+      const currentStrategy = strategies.find(
+        (s) => s.name === strategy.name
+      ).strategy;
       for (let i = 0; i < +sessions; i++) {
         const gameResults = gameWithStrategyUsingEngine(
-          playerBankerPlayerMartingale2,
+          currentStrategy,
           +bankRoll,
           +betSize,
           +numberOfHands,
