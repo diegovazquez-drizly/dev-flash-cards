@@ -57,8 +57,6 @@ function BaccaratSummary({
 
   if (!count || !Object.values(count).reduce((a, b) => a + b, 0)) return null;
 
-  console.log("count", count);
-
   return (
     <div className={s.SummaryContainer}>
       <Title>Summary</Title>

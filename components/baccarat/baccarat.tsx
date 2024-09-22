@@ -6,7 +6,14 @@ import BaccaratSummary from "./baccaratSummary";
 import TableSummary from "./baccaratTableSummary";
 import HandHistory from "./handHistory";
 import MultiHandHistory from "./multiHandHistory";
-import { Count, GameResults, GameResultsObject, MultiGameResult, Outcome, Winner } from "./types/types";
+import {
+  Count,
+  GameResults,
+  GameResultsObject,
+  MultiGameResult,
+  Outcome,
+  Winner,
+} from "./types/types";
 import { gameWithStrategyUsingEngine } from "./utils/gameUtils";
 import {
   BetStrategies,

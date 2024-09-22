@@ -22,8 +22,6 @@ interface TableSummary {
 }
 
 export default function TableSummary({ multiGameResults }: TableSummary) {
-  console.log(multiGameResults, "multiGameResults");
-
   return (
     <div className={s.MultiHandHistoriesContainer}>
       <div className={s.Table}>
@@ -38,9 +36,7 @@ export default function TableSummary({ multiGameResults }: TableSummary) {
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>
-            <>
-              {multiGameResults.map((row, i) => renderRow(row, i))}
-            </>
+            <>{multiGameResults.map((row, i) => renderRow(row, i))}</>
           </Table.Tbody>
         </Table>
       </div>

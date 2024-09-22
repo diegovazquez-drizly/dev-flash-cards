@@ -1,8 +1,5 @@
 import { Tabs, rem } from "@mantine/core";
-import {
-  IconMessageCircle,
-  IconPhoto
-} from "@tabler/icons-react";
+import { IconMessageCircle, IconPhoto } from "@tabler/icons-react";
 import Baccarat from "./baccarat";
 import s from "./baccarat.module.scss";
 

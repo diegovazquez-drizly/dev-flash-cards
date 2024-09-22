@@ -42,16 +42,19 @@ const HistoryTable = ({ gameResults }: HandHistoryProps) => {
 };
 
 export default function HandHistory({ gameResults }: HandHistoryProps) {
-  const accordiansItems = [{
-    value: "Line graph",
-    content: <BaccaratLineChart gameResults={gameResults} />,
-  },{
-    value: "Table",
-    content: <HistoryTable gameResults={gameResults} />,
-  }]
+  const accordiansItems = [
+    {
+      value: "Line graph",
+      content: <BaccaratLineChart gameResults={gameResults} />,
+    },
+    {
+      value: "Table",
+      content: <HistoryTable gameResults={gameResults} />,
+    },
+  ];
   const items = accordiansItems.map((item) => (
     <Accordion.Item key={item.value} value={item.value}>
-      <Accordion.Control >{item.value}</Accordion.Control>
+      <Accordion.Control>{item.value}</Accordion.Control>
       <Accordion.Panel>{item.content}</Accordion.Panel>
     </Accordion.Item>
   ));

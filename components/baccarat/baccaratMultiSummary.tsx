@@ -37,7 +37,7 @@ function BaccaratMultiSummary({ multiGameResult }: BaccaratMultiSummaryProps) {
     0
   );
   const averageWinnings = totalWinnings / totalGames;
-  
+
   return (
     <div className={s.SummaryContainer}>
       <Title>{multiGameResult.strategyName} Summary</Title>
