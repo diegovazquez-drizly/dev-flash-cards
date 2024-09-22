@@ -1,4 +1,4 @@
-import { BetStrategy } from "./strategies";
+import { BetSide, BetStrategy } from "./strategies";
 import { GameResults, Winner, WinnerType } from "../types/types";
 import BaccaratGameEngine from "../../../baccarat-engine/src/gameEngine/baccaratGameEngine";
 
@@ -29,7 +29,7 @@ export function dealHand(): any {
 }
 
 export function gameWithStrategy(
-  strategy: BetStrategy[],
+  strategy: BetSide[],
   bankRoll = 100,
   betSize = 10,
   hands = 10000
@@ -80,12 +80,13 @@ export function gameWithStrategy(
 }
 
 export function gameWithStrategyUsingEngine(
-  strategy: BetStrategy[],
+  betStrategy: BetStrategy,
   bankRoll = 100,
   betSize = 10,
   hands = 10000,
   targetWinnings = 100
 ): GameResults[] {
+  const { strategy, type } = betStrategy;
   const initialBankRoll = bankRoll;
   const gameEngine = new BaccaratGameEngine();
   gameEngine.shoe.createDecks();
@@ -102,33 +103,51 @@ export function gameWithStrategyUsingEngine(
       gameEngine.burnCards();
     }
 
-    const currentSide = strategy[strategyIndex].side;
-    const currentBet = strategy[strategyIndex].bet * betSize;
+    handNumber++;
     let unitsWon = 0;
 
+    const currentSide = strategy[strategyIndex].side;
     const hand = gameEngine.dealGame();
-
     const result = gameEngine.resultsEngine.calculateGameResult(hand);
-
-    handNumber++;
-    const gameData = {
+    const gameData: { currentSide: WinnerType; currentBet: number } = {
       currentSide,
-      currentBet,
+      currentBet: 0,
     };
 
+    console.log("type = ", type);
+
+    switch (type) {
+      case "Martingale":
+      case "Fibonacci":
+      case "FixedAmount":
+      default:
+        gameData.currentBet = strategy[strategyIndex].bet * betSize;
+        break;
+      case "FixedPercentage":
+        gameData.currentBet = Math.floor(
+          bankRoll * strategy[strategyIndex].bet
+        );
+        if (gameData.currentBet < betSize) {
+          gameData.currentBet = betSize;
+        }
+        break;
+    }
     if (result.outcome === currentSide) {
-      bankRoll += currentBet;
+      bankRoll += gameData.currentBet;
       unitsWon =
-        result.outcome === Winner.banker ? 0.95 * currentBet : currentBet;
+        result.outcome === Winner.banker
+          ? 0.95 * gameData.currentBet
+          : gameData.currentBet;
       strategyIndex = 0;
     } else if (result.outcome !== Winner.tie) {
-      bankRoll -= currentBet;
-      unitsWon = -currentBet;
+      bankRoll -= gameData.currentBet;
+      unitsWon = -gameData.currentBet;
       strategyIndex++;
       if (strategyIndex > strategy.length - 1) {
         strategyIndex = 0;
       }
     }
+
     results.push({
       ...gameData,
       winner: result.outcome!,
