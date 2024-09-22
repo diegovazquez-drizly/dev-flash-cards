@@ -15,7 +15,7 @@ import {
   Winner,
 } from "./types/types";
 import { gameWithStrategyUsingEngine } from "./utils/gameUtils";
-import { BetStrategies, betStrategies as strategies } from "./utils/strategies";
+import { BetStrategy, betStrategies as strategies } from "./utils/strategies";
 
 const INITIAL_BANKROLL = 100;
 const INITIAL_BET_SIZE = 10;
@@ -69,9 +69,7 @@ function Baccarat({ multiSession }: Props) {
         [Winner.player]: 0,
         [Winner.tie]: 0,
       };
-      const bettingStrategy = strategies.find(
-        (s) => s.name === betStrategies
-      )?.strategy;
+      const bettingStrategy = strategies.find((s) => s.name === betStrategies);
       if (!bettingStrategy) return alert("No strategy selected");
       const gameResults = gameWithStrategyUsingEngine(
         bettingStrategy,
@@ -94,7 +92,7 @@ function Baccarat({ multiSession }: Props) {
   };
 
   const dealMultiHands = () => {
-    const bettingStrategies: BetStrategies[] = strategies.filter((strategy) =>
+    const bettingStrategies: BetStrategy[] = strategies.filter((strategy) =>
       betStrategies.includes(strategy.name)
     );
     const resultsArray: MultiGameResult[] = [];
@@ -107,9 +105,7 @@ function Baccarat({ multiSession }: Props) {
         outcomes,
         strategyName: strategy.name,
       };
-      const currentStrategy = strategies.find(
-        (s) => s.name === strategy.name
-      ).strategy;
+      const currentStrategy = strategies.find((s) => s.name === strategy.name);
       for (let i = 0; i < +sessions; i++) {
         const gameResults = gameWithStrategyUsingEngine(
           currentStrategy,
